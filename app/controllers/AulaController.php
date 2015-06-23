@@ -1,21 +1,22 @@
 <?php
 
-class SalonController extends \BaseController {
+class AulaController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /salon
+	 * GET /aula
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		//
+		$data = Aula::paginate(5);
+		return View::make('aula.index', compact('data'));
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /salon/create
+	 * GET /aula/create
 	 *
 	 * @return Response
 	 */
@@ -26,7 +27,7 @@ class SalonController extends \BaseController {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /salon
+	 * POST /aula
 	 *
 	 * @return Response
 	 */
@@ -37,19 +38,20 @@ class SalonController extends \BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /salon/{id}
+	 * GET /aula/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function show($id)
 	{
-		//
+		$data = Aula::find($id);
+		return View::make('aula.show', compact('data'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /salon/{id}/edit
+	 * GET /aula/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -61,7 +63,7 @@ class SalonController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /salon/{id}
+	 * PUT /aula/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -73,7 +75,7 @@ class SalonController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /salon/{id}
+	 * DELETE /aula/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

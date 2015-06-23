@@ -7,4 +7,5 @@ class Ciclo extends \Eloquent {
 	{
 		return $this->belongsToMany('Carrera');
 	}
+
 }

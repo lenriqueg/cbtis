@@ -10,7 +10,8 @@ class SemestreController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$data = Semestre::paginate(5);
+        return View::make('semestre.index', compact('data'));
 	}
 
 	/**
@@ -35,16 +36,10 @@ class SemestreController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /semestre/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+        $data = Semestre::find($id);
+        return View::make('semestre.show', compact('data'));
 	}
 
 	/**
@@ -68,7 +63,7 @@ class SemestreController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+
 	}
 
 	/**

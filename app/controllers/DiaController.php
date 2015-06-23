@@ -2,15 +2,10 @@
 
 class DiaController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /dia
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+		$data = Dia::paginate(3);
+		return View::make('dia.index', compact('data'));
 	}
 
 	/**
@@ -35,16 +30,10 @@ class DiaController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /dia/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+		$data = Dia::find($id);
+		return View::make('dia.show', compact('data'));
 	}
 
 	/**

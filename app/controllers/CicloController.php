@@ -2,15 +2,12 @@
 
 class CicloController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /ciclo
-	 *
-	 * @return Response
-	 */
+
 	public function index()
 	{
-		//
+		$data = Ciclo::paginate(5);
+
+		return View::make('ciclo.index', compact('data'));
 	}
 
 	/**
@@ -44,7 +41,8 @@ class CicloController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$data = Ciclo::find($id);
+		return View::make('ciclo.show', compact('data'));
 	}
 
 	/**
@@ -56,7 +54,7 @@ class CicloController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return 'Esto es put';
 	}
 
 	/**

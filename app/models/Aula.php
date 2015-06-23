@@ -1,5 +1,5 @@
 <?php
 
-class Salon extends \Eloquent {
+class Aula extends \Eloquent {
 	protected $fillable = [];
 }

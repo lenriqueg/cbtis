@@ -2,15 +2,10 @@
 
 class CarreraController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /carrera
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+		$data = Carrera::paginate(3);
+		return View::make('carrera.index', compact('data'));
 	}
 
 	/**
@@ -35,16 +30,10 @@ class CarreraController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /carrera/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+		$data = Carrera::find($id);
+		return View::make('carrera.show', compact('data'));
 	}
 
 	/**

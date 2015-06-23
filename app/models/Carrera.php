@@ -3,8 +3,8 @@
 class Carrera extends \Eloquent {
 	protected $fillable = [];
 
-	public function ciclo()
+	public function grupo()
 	{
-		return $this->belongsToMany('Ciclo');
+		return $this->hasMany('Grupo');
 	}
 }

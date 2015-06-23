@@ -10,7 +10,8 @@ class GrupoController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$data = Carrera::all();
+		return View::make('grupo.index', compact('data'));
 	}
 
 	/**

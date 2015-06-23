@@ -2,15 +2,10 @@
 
 class MateriaController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /materia
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+        $data = Materia::paginate(5);
+        return View::make('materia.index', compact('data'));
 	}
 
 	/**
@@ -35,16 +30,10 @@ class MateriaController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /materia/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+        $data = Materia::find($id);
+        return View::make('materia.show', compact('data'));
 	}
 
 	/**

@@ -2,15 +2,10 @@
 
 class TurnoController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /turno
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+		$data = Turno::paginate(3);
+		return View::make('turno.index', compact('data'));
 	}
 
 	/**
@@ -35,16 +30,10 @@ class TurnoController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /turno/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+		$data = Turno::find($id);
+		return View::make('turno.show', compact('data'));
 	}
 
 	/**

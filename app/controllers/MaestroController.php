@@ -2,15 +2,10 @@
 
 class MaestroController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /maestro
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+        $data = Maestro::paginate(5);
+		return View::make('maestro.index', compact('data'));
 	}
 
 	/**
@@ -35,16 +30,10 @@ class MaestroController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /maestro/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+		$data = Maestro::find($id);
+        return View::make('maestro.show', compact('data'));
 	}
 
 	/**

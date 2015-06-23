@@ -10,7 +10,8 @@ class HoraController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$data = Hora::paginate(7);
+		return View::make('hora.index', compact('data'));
 	}
 
 	/**
@@ -35,16 +36,10 @@ class HoraController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /hora/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+		$data = Hora::find($id);
+		return View::make('hora.show', compact('data'));
 	}
 
 	/**
