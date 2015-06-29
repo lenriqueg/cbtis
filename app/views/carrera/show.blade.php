@@ -25,7 +25,7 @@
 		</div>
 		<div class="col-md-3"></div>
 	</div>
-	{{-- opciones del ciclo --}}
+	{{-- opciones de la carrera --}}
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">

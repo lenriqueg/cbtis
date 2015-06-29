@@ -5,18 +5,19 @@ class GrupoController extends \BaseController {
 	public function index($id)
 	{
 		$data = Carrera::find($id)->grupo;
+
+		if (count($data) == 0) {
+			$link = URL::route('grupo.new');
+			$title = 'Nuevo grupo';
+			return View::make('null', compact('link', 'title'));
+		}
 		return View::make('grupo.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /grupo/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
+		$data = Carrera::find($id)->grupo;
+		return View::make('grupo.create');
 	}
 
 	/**
@@ -69,7 +70,16 @@ class GrupoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		try{
+			$data = Grupo::find($id);
+			$data->destroy($id);
+			return Redirect::route('especialidades');
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+			
+		}
 	}
 
 }

@@ -5,29 +5,32 @@ class DiaController extends \BaseController {
 	public function index()
 	{
 		$data = Dia::paginate(3);
+		
 		return View::make('dia.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /dia/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
+		return View::make('dia.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /dia
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = ['dia'	=> 'required | unique:dias,dia'];
+
+		$validacion = Validator::make($data, $rules);
+
+		if ($validacion->passes()) {
+			$dia = new dia();
+			$dia->dia = Input::get('dia');
+			$dia->save();
+
+			return Redirect::route('dia.show', $dia->id);
+		 } 
+
+		return Redirect::back()->withInput()->withErrors($validacion->messages());
 	}
 
 	public function show($id)
@@ -60,16 +63,18 @@ class DiaController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /dia/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		//
+		try{
+			$data = Dia::find($id);
+			$data->destroy($id);
+			return Redirect::route('dias');
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+			
+		}
 	}
 
 }

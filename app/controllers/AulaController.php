@@ -73,18 +73,18 @@ class AulaController extends \BaseController {
 
 	public function status($id)
 	{
-		$aula = Aula::find($id);
+		$data = Aula::find($id);
 
-		if ($aula->status == 1) 
+		if ($data->status == 1) 
 		{
-			$aula->status = 0;
-			$aula->save();
+			$data->status = 0;
+			$data->save();
 			
 			return Redirect::action('AulaController@show', $id);
 		}
 
-		$aula->status = 1;
-		$aula->save();
+		$data->status = 1;
+		$data->save();
 
 		return Redirect::action('AulaController@show', $id);
 
@@ -92,11 +92,16 @@ class AulaController extends \BaseController {
 
 	public function destroy($id)
 	{
-		$aula = Aula::find($id);
-		$aula->destroy($id);
-
-		return Redirect::action('AulaController@index');
-
+		try{
+			$data = Aula::find($id);
+			$data->destroy($id);
+			return Redirect::route('aulas');
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+			
+		}
 	}
 
 }

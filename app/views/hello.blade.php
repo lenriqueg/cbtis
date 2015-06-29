@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,19 +26,32 @@
 					<li class="dropdown">
 				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Aulas<b class="caret"></b></a>
 				        <ul class="dropdown-menu">
-				            <li><a href="{{ URL::route('aulas') }}">Lista de aula</a></li>
-				            <li><a href="{{URL::route('aula.new')}} ">Nueva aulas</a></li>
+				            <li><a href="{{ route('aulas') }}">Lista de aula</a></li>
+				            <li><a href="{{route('aula.new')}} ">Nueva aulas</a></li>
 				        </ul>
 				    </li>
 				    <li class="dropdown">
 				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Especialidades<b class="caret"></b></a>
 				        <ul class="dropdown-menu">
-				            <li><a href="{{ URL::route('especialidades') }}">Lista de especialidades</a></li>
-				            <li><a href="{{URL::route('esp.new')}} ">Nueva especialidad</a></li>
+				            <li><a href="{{ route('especialidades') }}">Lista de especialidades</a></li>
+				            <li><a href="{{route('esp.new')}} ">Nueva especialidad</a></li>
 				        </ul>
 				    </li>
-					<li><a href=" {{ action('CicloController@index') }} ">Ciclos</a></li>
-					<li><a href="{{-- {{URL::action('AuthController@logOut')}} --}}">Cerrar Sesión</a>
+				    <li class="dropdawn">
+				    	<a href="" class="dropdown-toggle" data-toggle="dropdown">Ciclos<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ action('CicloController@index') }}">Lista de ciclos</a></li>
+							<li><a href="{{route('ciclo.new')}} ">Nuevo ciclo</a></li>
+						</ul>
+				    </li>
+				    <li class="dropdawn">
+				    	<a href="" class="dropdown-toggle" data-toggle="dropdown">Dias<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ route('dias') }}">Lista de dias</a></li>
+							<li><a href="{{route('dia.new')}} ">Nuevo dia</a></li>
+						</ul>
+				    </li>
+					<li><a href="{{-- {{action('AuthController@logOut')}} --}}">Cerrar Sesión</a>
 				</ul>
 			</div>
 		</div>

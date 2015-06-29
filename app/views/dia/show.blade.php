@@ -16,11 +16,19 @@
 		</div>
 		<div class="col-md-3"></div>
 	</div>
-	{{-- opciones del ciclo --}}
+	{{-- opciones del dia --}}
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
-			<button class="btn btn-danger">Eliminar</button>
+			@if(Session::has('mensaje_error'))
+			<div class="alert alert-dismissable alert-danger">
+			  	<button type="button" class="close" data-dismiss="alert">×</button>
+	            {{ Session::get('mensaje_error') }}
+			</div>
+	        @endif
+	        {{ Form::open(['route' => ['dia.destroy',$data->id], 'method' => 'DELETE']) }}
+				<button class="btn btn-danger">Eliminar</button>
+			{{ Form::close() }}
 		</div>
 		<div class="col-md-3"></div>
 	</div>

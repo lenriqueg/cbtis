@@ -6,7 +6,7 @@ Route::get('especialidad_show_{id}', ['as' => 'esp.show', 'uses' => 'CarreraCont
 
 /* crear */
 
-Route::get('especialdiad_new', ['as' => 'esp.new', 'uses' => 'CarreraController@create']);
+Route::get('especialidad_new', ['as' => 'esp.new', 'uses' => 'CarreraController@create']);
 
 Route::post('especialidad_new', ['as' => 'esp.new', 'uses' => 'CarreraController@store']);
 

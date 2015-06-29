@@ -1,9 +1,33 @@
 @import "bootstrap.min.css";
 @import "font-awesome.min.css";
 .card {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
   display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 .card-action {
   font-size: 2.5em;
+}
+.face {
+  color: #1e90ff;
+  font-size: 10em;
+  display: inline-block;
+  padding: 0;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.icon-link {
+  font-size: 3em;
 }

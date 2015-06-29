@@ -8,26 +8,31 @@ class CarreraController extends \BaseController {
 		return View::make('carrera.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /carrera/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
+		return View::make('carrera.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /carrera
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = ['carrera' => 'required | unique:carreras,carrera'];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+			
+			$carrera = new carrera;
+
+			$carrera->carrera = Input::get('carrera');
+			$carrera->status = 1;
+			$carrera->save();
+
+			return Redirect::action('CarreraController@show', $carrera->id);
+		}
+
+		return Redirect::back()->withInput()->withErrors($validator->messages());
 	}
 
 	public function show($id)
@@ -63,18 +68,18 @@ class CarreraController extends \BaseController {
 	
 	public function status($id)
 	{
-		$carrera = Carrera::find($id);
+		$data = Carrera::find($id);
 
-		if ($carrera->status == 1) 
+		if ($data->status == 1) 
 		{
-			$carrera->status = 0;
-			$carrera->save();
+			$data->status = 0;
+			$data->save();
 			
 			return Redirect::action('CarreraController@show', $id);
 		}
 
-		$carrera->status = 1;
-		$carrera->save();
+		$data->status = 1;
+		$data->save();
 
 		return Redirect::action('CarreraController@show', $id);
 
@@ -82,17 +87,17 @@ class CarreraController extends \BaseController {
 
 	public function destroy($id)
 	{
-		DB::beginTransaction(function($id){
+		try{
 			$data = Carrera::find($id);
 			$data->destroy($id);
-
-			DB::commit();
 			return Redirect::route('especialidades');
-		});
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+			
+		}
 
-		// return Redirect::back()
-		// 	->with('mensaje_error', 'Existen informacion relacionada')
-		// 	->withInput();;
 	}
 
 }

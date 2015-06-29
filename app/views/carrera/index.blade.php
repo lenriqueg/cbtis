@@ -21,7 +21,7 @@
 						<tr>
 							<td>{{$d->carrera}}</td>
 							<td>
-								<a href="{{ action('GrupoController@index', $d->id) }}">
+								<a href="{{ action('GrupoController@index', [$d->id]) }}">
 									Grupos
 								</a>
 							</td>

@@ -30,7 +30,7 @@
 						<td>{{ $d->semestre->semestre }}</td>
 						<td class="text-center">
 							<a href="{{ action('GrupoController@show', $d->id) }}">
-								<span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></span>
+								<i class="fa fa-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></i>
 							</a>
 						</td>
 						<td>{{ $d->carrera->carrera }}</td>
