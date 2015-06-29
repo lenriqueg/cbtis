@@ -1,0 +1,9 @@
+@import "bootstrap.min.css";
+@import "font-awesome.min.css";
+.card {
+  display: flex;
+  justify-content: center;
+}
+.card-action {
+  font-size: 2.5em;
+}

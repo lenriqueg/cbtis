@@ -36,40 +36,63 @@ class CarreraController extends \BaseController {
 		return View::make('carrera.show', compact('data'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /carrera/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		//
+		$data = Carrera::find($id);
+
+		return View::make('carrera.edit', compact('data'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /carrera/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-		//
+		$data = Input::except('_token');
+		$rules = ['carrera' => 'required'];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+			$carrera = Carrera::find($id);
+			$carrera->carrera = Input::get('carrera');
+			$carrera->save();
+
+			return Redirect::route('esp.show', $id);
+		}
+
+		return Redirect::back()->withInput()->withErrors($validator->messages());
+	}
+	
+	public function status($id)
+	{
+		$carrera = Carrera::find($id);
+
+		if ($carrera->status == 1) 
+		{
+			$carrera->status = 0;
+			$carrera->save();
+			
+			return Redirect::action('CarreraController@show', $id);
+		}
+
+		$carrera->status = 1;
+		$carrera->save();
+
+		return Redirect::action('CarreraController@show', $id);
+
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /carrera/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		//
+		DB::beginTransaction(function($id){
+			$data = Carrera::find($id);
+			$data->destroy($id);
+
+			DB::commit();
+			return Redirect::route('especialidades');
+		});
+
+		// return Redirect::back()
+		// 	->with('mensaje_error', 'Existen informacion relacionada')
+		// 	->withInput();;
 	}
 
 }

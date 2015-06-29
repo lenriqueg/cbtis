@@ -2,87 +2,101 @@
 
 class AulaController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /aula
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		$data = Aula::paginate(5);
+		$data = Aula::paginate(7);
 		return View::make('aula.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /aula/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
+		return View::make('aula.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /aula
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = ['aula' => 'required | unique:aulas,aula'];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+			
+			$aula = new Aula;
+
+			$aula->aula = Input::get('aula');
+			$aula->descripcion = Input::get('descripcion');
+			$aula->status = 1;
+			$aula->save();
+
+			return Redirect::action('AulaController@show', $aula->id);
+		}
+
+		return Redirect::back()->withInput()->withErrors($validator->messages());
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /aula/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		$data = Aula::find($id);
 		return View::make('aula.show', compact('data'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /aula/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		//
+		$data = Aula::find($id);
+		return View::make('aula.edit', compact('data'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /aula/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = [
+			'aula' => 'required'
+		];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) 
+		{
+			$aula = Aula::find($id);
+			$aula->aula = Input::get('aula');
+			$aula->descripcion = Input::get('descripcion');
+			$aula->save();
+
+			return Redirect::action('AulaController@show', $id);
+		}
+
+		return Redirect::back()->withInput()->withErrors($validator->messages());;
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /aula/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	public function status($id)
+	{
+		$aula = Aula::find($id);
+
+		if ($aula->status == 1) 
+		{
+			$aula->status = 0;
+			$aula->save();
+			
+			return Redirect::action('AulaController@show', $id);
+		}
+
+		$aula->status = 1;
+		$aula->save();
+
+		return Redirect::action('AulaController@show', $id);
+
+	}
+
 	public function destroy($id)
 	{
-		//
+		$aula = Aula::find($id);
+		$aula->destroy($id);
+
+		return Redirect::action('AulaController@index');
+
 	}
 
 }

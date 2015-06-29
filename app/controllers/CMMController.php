@@ -1,16 +1,22 @@
 <?php
 
-class GrupoController extends \BaseController {
+class CMMController extends \BaseController {
 
+	/**
+	 * Display a listing of the resource.
+	 * GET /cmm
+	 *
+	 * @return Response
+	 */
 	public function index($id)
 	{
-		$data = Carrera::find($id)->grupo;
-		return View::make('grupo.index', compact('data'));
+		$data = Maestro::find($id);
+		return View::make('maestro_materia.index', compact('data'));
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /grupo/create
+	 * GET /cmm/create
 	 *
 	 * @return Response
 	 */
@@ -21,7 +27,7 @@ class GrupoController extends \BaseController {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /grupo
+	 * POST /cmm
 	 *
 	 * @return Response
 	 */
@@ -30,15 +36,21 @@ class GrupoController extends \BaseController {
 		//
 	}
 
+	/**
+	 * Display the specified resource.
+	 * GET /cmm/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function show($id)
 	{
-		$data = Grupo::find($id);
-		return View::make('grupo.show', compact('data'));
+		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /grupo/{id}/edit
+	 * GET /cmm/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -50,7 +62,7 @@ class GrupoController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /grupo/{id}
+	 * PUT /cmm/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -62,7 +74,7 @@ class GrupoController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /grupo/{id}
+	 * DELETE /cmm/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

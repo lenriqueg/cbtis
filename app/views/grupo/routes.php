@@ -1,5 +1,5 @@
 <?php
 
-Route::get('grupos', ['as' => 'grupos', 'uses' => 'GrupoController@index']);
+Route::get('carrera/{id}/grupos', ['as' => 'grupos', 'uses' => 'GrupoController@index']);
 
 Route::get('grupo-{id}', ['as' => 'grupos', 'uses' => 'GrupoController@show']);

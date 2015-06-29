@@ -11,6 +11,11 @@
                 <div class="panel-body">
                     <p>Maestro: {{ $data->nombres }}</p>
                     <p><small>Clave: {{ $data->clave }}</small></p>
+                    <p>
+                        <a href="{{ action('CMMController@index', $data->id) }}">
+                            materias del maestro
+                        </a>
+                    </p>
                     @if ($data->status == 1)
                     <small>Activado</small>
                     <span class="glyphicon glyphicon-record text-success" data-toggle="tooltip" data-placement="bottom" title="Maestro activo"></span>

@@ -4,9 +4,13 @@
 
 <section class="container">
 	<div class="row">
-		<a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nueva aula">
-			<span class="glyphicon glyphicon-plus-sign text-primary"></span>
-		</a>
+		<div class="col-md-6">
+			<div class="card">
+				{{-- <a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nueva aula" class="card-action">
+					<i class="fa fa-plus-circle"></i>
+				</a> --}}
+			</div>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -28,14 +32,14 @@
 							<td>{{ $d->descripcion }}</td>
 							<td class="text-center">
 								<a href="{{ action('AulaController@show', $d->id) }}">
-									<span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></span>
+									<i class="fa fa-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></i>
 								</a>
 							</td>
 							<td class="text-center">
 								@if ($d->status == 1)
-									<span class="glyphicon glyphicon-record text-success" data-toggle="tooltip" data-placement="bottom" title="Salón activo"></span>
+								<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Salón activo"></i>
 								@else
-									<span class="glyphicon glyphicon-ban-circle text-danger" data-toggle="tooltip" data-placement="bottom" title="Salón no activo"></span>
+								<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Salón no activo"></i>
 								@endif
 								
 							</td>

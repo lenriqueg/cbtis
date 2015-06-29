@@ -8,4 +8,9 @@ class Ciclo extends \Eloquent {
 		return $this->belongsToMany('Carrera');
 	}
 
+	public function materia()
+	{
+		return $this->belongsToMany('Materia');
+	}
+
 }

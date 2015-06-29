@@ -9,7 +9,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Descripcion</div>
 				<div class="panel-body">
-			    	<p>{{ $data->ciclo }}</p>
+			    	<p>{{ $data }}</p>
 			    	<p><small>identificador: {{ $data->id }}</small></p>
 			    	@if ($data->status == 1)
 					<small>Activado</small>

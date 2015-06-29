@@ -12,30 +12,28 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<table class="table table-bordered table-hover table-striped">
-				<caption class="text-uppercase">grupos del CBTIS #251</caption>
+				<caption class="text-uppercase">
+					Grupo: {{ $data->grupo }}
+					Total de materias: {{ count($data->materia) }}
+				</caption>
 				<thead>
 					<tr>
-						<th class="text-center">Grupo</th>
-						<th class="text-center">Turno</th>
-						<th class="text-center">Semestre</th>
-						<th class="text-center">Opciones</th>
+						<th class="text-center">Materia</th>
 						<th class="text-center">Carrera</th>
+						<th class="text-center">Opciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($data as $d)
+					@foreach($data->materia as $d)
 					<tr>
-						<td>{{ $d->grupo }}</td>
-						<td>{{ $d->turno->turno }}</td>
-						<td>{{ $d->semestre->semestre }}</td>
+						<td>{{ $d->materia }}</td>
+						<td>{{ $data->carrera->carrera }}</td>
 						<td class="text-center">
-							<a href="{{ action('GrupoController@show', $d->id) }}">
+							<a href="">
 								<span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></span>
 							</a>
 						</td>
-						<td>{{ $d->carrera->carrera }}</td>
 					</tr>
-
 					@endforeach
 				</tbody>
 			</table>

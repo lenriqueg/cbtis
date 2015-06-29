@@ -9,34 +9,57 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Descripcion</div>
 				<div class="panel-body">
-			    	<p>Carrera: {{ $data->aula }}</p>
+			    	<p>Salón: {{ $data->aula }}</p>
 			    	<p><small>identificador: {{ $data->id }}</small></p>
 			    	<p><small>Descripcion: {{ $data->descripcion }}</small></p>
 			    	@if ($data->status == 1)
-					<small>Activado</small>
-			    	<span class="glyphicon glyphicon-record text-success" data-toggle="tooltip" data-placement="bottom" title="Salón activo"></span>
-			    	@else
-		    		<p>
-		    			<small>Desactivado</small>
-		    			<span class="glyphicon glyphicon-ban-circle text-danger" data-toggle="tooltip" data-placement="bottom" title="Salón no activo"></span>
-		    		</p>
-			    	@endif
+			    	<p>
+			    		<small>Activo</small>
+						<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Salón activo"></i>
+			    	</p>
+					@else
+					<p>
+						<small>No activo</small>
+						<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Salón no activo"></i>
+					</p>
+					@endif
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3"></div>
 	</div>
-	{{-- opciones del ciclo --}}
+	{{-- opciones del aula --}}
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
-			<button class="btn btn-info">Actualizar</button>
-			@if ($data->status == 1)
-			<button class="btn btn-warning">Desactivar</button>
-			@else
-			<button class="btn btn-success">Activar</button>
-			@endif
-			<button class="btn btn-danger">Eliminar</button>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<a href="{{ action('AulaController@edit', $data->id) }}">
+								<button class="btn btn-info">Actualizar</button>
+							</a>
+						</td>
+						<td>
+							@if ($data->status == 1)
+							{{ Form::open(['route' => ['aula.status', $data->id], 'method' => 'PUT']) }}
+								<button class="btn btn-warning">Desactivar</button>
+							{{ Form::close() }}
+							@else
+							{{ Form::open(['route' => ['aula.status', $data->id], 'method' => 'PUT']) }}
+								<button class="btn btn-success">Activar</button>
+							{{ Form::close() }}
+							@endif
+						</td>
+						<td>
+							{{ Form::open(['route' => ['aula.destroy', $data->id], 'method' => 'DELETE']) }}
+								<button class="btn btn-danger">Eliminar</button>
+							{{ Form::close() }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
 		</div>
 		<div class="col-md-3"></div>
 	</div>

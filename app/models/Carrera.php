@@ -7,4 +7,5 @@ class Carrera extends \Eloquent {
 	{
 		return $this->hasMany('Grupo');
 	}
+
 }
