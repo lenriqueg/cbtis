@@ -34,7 +34,7 @@
 						<option value="{{ $d->id }}">{{ $d->semestre }}</option>
 					@endforeach
 				</select>
-				{{$errors->first('periodo', '<p class="text-danger">:message</p>')}}
+				{{$errors->first('semestre_id', '<p class="text-danger">:message</p>')}}
 			</div>
 			<div class="form-group">
 				<button class="btn btn-info">Guardar</button>

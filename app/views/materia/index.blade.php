@@ -2,6 +2,12 @@
 
 @section('section')
 
+<section class="container text-center">
+    <a href="{{ route('mat.new') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nueva materia">
+        <i class="fa fa-plus-circle"></i>
+    </a>
+</section>
+
 <section class="container">
     <div class="row">
         <a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nueva materia">

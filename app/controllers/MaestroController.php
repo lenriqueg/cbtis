@@ -5,6 +5,13 @@ class MaestroController extends \BaseController {
 	public function index()
 	{
         $data = Maestro::paginate(5);
+
+        if (count($data) == 0) {
+			$link = route('mtr.new');
+			$title = 'Nuevo maestro';
+			return View::make('null', compact('link', 'title'));
+		}
+
 		return View::make('maestro.index', compact('data'));
 	}
 

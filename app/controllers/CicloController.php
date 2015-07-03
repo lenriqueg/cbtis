@@ -7,6 +7,12 @@ class CicloController extends \BaseController {
 	{
 		$data = Ciclo::paginate(5);
 
+		if (count($data) == 0) {
+			$link = route('ciclo.new');
+			$title = 'Nuevo ciclo';
+			return View::make('null', compact('link', 'title'));
+		}
+
 		return View::make('ciclo.index', compact('data'));
 	}
 

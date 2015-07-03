@@ -5,6 +5,13 @@ class CarreraController extends \BaseController {
 	public function index()
 	{
 		$data = Carrera::paginate(3);
+
+		if (count($data) == 0) {
+			$link = route('esp.new');
+			$title = 'Nueva especialidad';
+			return View::make('null', compact('link', 'title'));
+		}
+
 		return View::make('carrera.index', compact('data'));
 	}
 

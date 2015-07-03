@@ -11,6 +11,13 @@ class SemestreController extends \BaseController {
 	public function index()
 	{
 		$data = Semestre::paginate(5);
+
+		if (count($data) == 0) {
+			$link = route('sem.new');
+			$title = 'Nuevo semestre';
+			return View::make('null', compact('link', 'title'));
+		}
+
         return View::make('semestre.index', compact('data'));
 	}
 

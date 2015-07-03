@@ -18,7 +18,7 @@ class GrupoController extends \BaseController {
 	{
 		$data = Carrera::find($id);
 		$turno = Turno::all();
-		$semestre = Semestre::all();
+		$semestre = Semestre::where('status', '=', '1')->get();
 		return View::make('grupo.create', compact('data', 'turno', 'semestre'));
 	}
 

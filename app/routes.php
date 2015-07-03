@@ -14,4 +14,4 @@ require 'views/semestre/routes.php';
 require 'views/turno/routes.php';
 require 'views/turno/routes.php';
 
-Route::get('/', 'HomeController@index');
+Route::get('/', ['as' => 'root', 'uses' => 'HomeController@index']);

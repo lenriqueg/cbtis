@@ -2,11 +2,13 @@
 
 @section('section')
 
+<section class="container text-center">
+	<a href="{{ route('gm.new', $data->id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</section>
+
 <section class="container">
-	<div class="row">
-		<a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nuevo grupo">
-			<span class="glyphicon glyphicon-plus-sign text-primary"></span>
-		</a>
 	</div>
 	<div class="row">
 		<div class="col-md-2"></div>

@@ -2,16 +2,13 @@
 
 @section('section')
 
+<section class="container text-center">
+	<a href="{{ route('aula.new') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nueva aula">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</section>
+
 <section class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="card">
-				{{-- <a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nueva aula" class="card-action">
-					<i class="fa fa-plus-circle"></i>
-				</a> --}}
-			</div>
-		</div>
-	</div>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">

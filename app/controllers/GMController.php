@@ -2,15 +2,10 @@
 
 class GMController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /pivot
-	 *
-	 * @return Response
-	 */
 	public function index($id)
 	{
 		$data = Grupo::find($id);
+
 		return View::make('grupo_materia.index', compact('data'));
 	}
 

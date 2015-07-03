@@ -5,6 +5,12 @@ class DiaController extends \BaseController {
 	public function index()
 	{
 		$data = Dia::paginate(3);
+
+		if (count($data) == 0) {
+			$link = route('dia.new');
+			$title = 'Nuevo dia';
+			return View::make('null', compact('link', 'title'));
+		}
 		
 		return View::make('dia.index', compact('data'));
 	}

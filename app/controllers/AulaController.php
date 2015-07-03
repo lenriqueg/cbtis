@@ -5,6 +5,12 @@ class AulaController extends \BaseController {
 	public function index()
 	{
 		$data = Aula::paginate(7);
+
+		if (count($data) == 0) {
+			$link = route('aula.new');
+			$title = 'Nueva aula';
+			return View::make('null', compact('link', 'title'));
+		}
 		return View::make('aula.index', compact('data'));
 	}
 

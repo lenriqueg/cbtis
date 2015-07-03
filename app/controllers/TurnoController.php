@@ -5,6 +5,13 @@ class TurnoController extends \BaseController {
 	public function index()
 	{
 		$data = Turno::paginate(3);
+
+		if (count($data) == 0) {
+			$link = route('turno.new');
+			$title = 'Nuevo turno';
+			return View::make('null', compact('link', 'title'));
+		}
+
 		return View::make('turno.index', compact('data'));
 	}
 

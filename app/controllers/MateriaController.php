@@ -5,6 +5,13 @@ class MateriaController extends \BaseController {
 	public function index()
 	{
         $data = Materia::paginate(5);
+
+        if (count($data) == 0) {
+			$link = route('mat.new');
+			$title = 'Nueva materia';
+			return View::make('null', compact('link', 'title'));
+		}
+
         return View::make('materia.index', compact('data'));
 	}
 

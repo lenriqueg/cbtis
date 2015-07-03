@@ -5,6 +5,13 @@ class HoraController extends \BaseController {
 	public function index()
 	{
 		$data = Hora::paginate(7);
+
+		if (count($data) == 0) {
+			$link = route('hora.new');
+			$title = 'Nueva hora';
+			return View::make('null', compact('link', 'title'));
+		}
+
 		return View::make('hora.index', compact('data'));
 	}
 
