@@ -8,26 +8,37 @@ class MateriaController extends \BaseController {
         return View::make('materia.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /materia/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
+		return View::make('materia.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /materia
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = [
+			'materia' => 'required | unique:materias,materia',
+			'hrs_practicas' => 'integer',
+			'hrs_teoricas' => 'integer'
+		];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+			
+			$materia = new Materia;
+
+			$materia->materia = Input::get('materia');
+			$materia->hrs_practicas = Input::get('hrs_practicas');
+			$materia->hrs_teoricas = Input::get('hrs_teoricas');
+			$materia->status = 1;
+			$materia->save();
+
+			return Redirect::route('mat.show', $materia->id);
+		}
+
+		return Redirect::back()->withInput()->withErrors($validator->messages());
 	}
 
 	public function show($id)
@@ -36,40 +47,70 @@ class MateriaController extends \BaseController {
         return View::make('materia.show', compact('data'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /materia/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		//
+		$data = Materia::find($id);
+
+		return View::make('materia.edit', compact('data'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /materia/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-		//
+		
+		$data = Input::except('_token');
+
+		$rules = [
+			'materia' => 'required',
+		];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+			
+			$materia = Materia::find($id);
+
+			$materia->materia = Input::get('materia');
+			$materia->hrs_practicas = Input::get('hrs_practicas');
+			$materia->hrs_teoricas = Input::get('hrs_teoricas');
+			$materia->save();
+
+			return Redirect::route('mat.show', $materia->id);
+		}
+
+		return Redirect::back()->withInput()->withErrors($validator->messages());
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /materia/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	public function status($id)
+	{
+		$data = Materia::find($id);
+
+		if ($data->status == 1) 
+		{
+			$data->status = 0;
+			$data->save();
+			
+			return Redirect::route('mat.show', $id);
+		}
+
+		$data->status = 1;
+		$data->save();
+
+		return Redirect::route('mat.show', $id);
+
+	}
+
 	public function destroy($id)
 	{
-		//
+		try{
+			$data = Materia::find($id);
+			$data->destroy($id);
+			return Redirect::route('materias');
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+			
+		}
 	}
 
 }

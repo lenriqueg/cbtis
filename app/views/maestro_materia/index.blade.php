@@ -4,11 +4,6 @@
 
 <section class="container">
 	<div class="row">
-		<a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nuevo grupo">
-			<span class="glyphicon glyphicon-plus-sign text-primary"></span>
-		</a>
-	</div>
-	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<table class="table table-bordered table-hover table-striped">
@@ -31,9 +26,9 @@
 						<td>{{ $d->ciclo }}</td>
 						<td>
 							@if ($d->status == 1)
-								<span class="glyphicon glyphicon-record text-success" data-toggle="tooltip" data-placement="bottom" title="Ciclo actual activo"></span>
+							<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Materia activo"></i>
 							@else
-								<span class="glyphicon glyphicon-ban-circle text-danger" data-toggle="tooltip" data-placement="bottom" title="Ciclo no activo"></span>
+							<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Materia no activo"></i>
 							@endif
 						</td>
 						@endforeach

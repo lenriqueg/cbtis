@@ -6,9 +6,9 @@ Route::get('grupo_show_{id}', ['as' => 'grupo.show', 'uses' => 'GrupoController@
 
 /* crear */
 
-Route::get('grupo_new', ['as' => 'grupo.new', 'uses' => 'GrupoController@create']);
+Route::get('especialidad/{id}/grupo_new', ['as' => 'grupo.new', 'uses' => 'GrupoController@create']);
 
-Route::post('grupo_new', ['as' => 'grupo.new', 'uses' => 'GrupoController@store']);
+Route::post('grupo_new', ['as' => 'grupo.post', 'uses' => 'GrupoController@store']);
 
 /* actualizar */
 

@@ -2,38 +2,34 @@
 
 class HoraController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /hora
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		$data = Hora::paginate(7);
 		return View::make('hora.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /hora/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
+		return View::make('hora.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /hora
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = ['hora'	=> 'required | unique:horas,hora'];
+
+		$validacion = Validator::make($data, $rules);
+
+		if ($validacion->passes()) {
+			$hora = new Hora();
+			$hora->hora = Input::get('hora');
+			$hora->save();
+
+			return Redirect::route('hora.show', $hora->id);
+		 } 
+
+		return Redirect::back()->withInput()->withErrors($validacion->messages());
 	}
 
 	public function show($id)
@@ -75,7 +71,16 @@ class HoraController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		try{
+			$data = Hora::find($id);
+			$data->destroy($id);
+			return Redirect::route('horas');
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+			
+		}
 	}
 
 }

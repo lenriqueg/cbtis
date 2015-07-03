@@ -29,15 +29,15 @@
                     <td>{{$d->hrs_practicas}}</td>
                     <td>{{$d->hrs_teoricas}}</td>
                     <td class="text-center">
-                        <a href="{{ action('MateriaController@show', $d->id) }}">
-                            <span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></span>
+                        <a href="{{ route('mat.show', $d->id) }}">
+                            <i class="fa fa-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></i>
                         </a>
                     </td>
                     <td class="text-center">
                         @if ($d->status == 1)
-                        <span class="glyphicon glyphicon-record text-success" data-toggle="tooltip" data-placement="bottom" title="Materia activo"></span>
+                        <i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Maestro activo"></i>
                         @else
-                        <span class="glyphicon glyphicon-ban-circle text-danger" data-toggle="tooltip" data-placement="bottom" title="Materia no activo"></span>
+                        <i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Materia no activo"></i>
                         @endif
 
                     </td>

@@ -7,28 +7,46 @@ class GrupoController extends \BaseController {
 		$data = Carrera::find($id)->grupo;
 
 		if (count($data) == 0) {
-			$link = URL::route('grupo.new');
+			$link = URL::route('grupo.new', $id);
 			$title = 'Nuevo grupo';
 			return View::make('null', compact('link', 'title'));
 		}
-		return View::make('grupo.index', compact('data'));
+		return View::make('grupo.index', compact('data', 'id'));
 	}
 
-	public function create()
+	public function create($id)
 	{
-		$data = Carrera::find($id)->grupo;
-		return View::make('grupo.create');
+		$data = Carrera::find($id);
+		$turno = Turno::all();
+		$semestre = Semestre::all();
+		return View::make('grupo.create', compact('data', 'turno', 'semestre'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /grupo
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = [
+			'grupo'			=> 'required | unique:grupos,grupo',
+			'carrera_id'	=> 'required',
+			'turno_id'		=> 'required',
+			'semestre_id'	=> 'required'
+		];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+			$grupo = new grupo();
+			$grupo->grupo = Input::get('grupo');
+			$grupo->carrera_id = Input::get('carrera_id');
+			$grupo->turno_id = Input::get('turno_id');
+			$grupo->semestre_id = Input::get('semestre_id');
+			$grupo->save();
+			
+			return Redirect::route('grupo.show', $grupo->id);
+		 } 
+
+		return Redirect::back()->withInput()->withErrors($validator->messages());
 	}
 
 	public function show($id)

@@ -3,6 +3,8 @@
 class Materia extends \Eloquent {
 	protected $fillable = [];
 
+	public $timestamps = false;
+
 	public function grupo()
 	{
 		return $this->belongsToMany('Grupo');

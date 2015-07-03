@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>CBTIS #251</title>
 	<link rel="stylesheet" href=" {{ asset('css/main.css') }}">
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -49,6 +49,27 @@
 						<ul class="dropdown-menu">
 							<li><a href="{{ route('dias') }}">Lista de dias</a></li>
 							<li><a href="{{route('dia.new')}} ">Nuevo dia</a></li>
+						</ul>
+				    </li>
+				    <li class="dropdawn">
+				    	<a href="" class="dropdown-toggle" data-toggle="dropdown">Horas<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ route('horas') }}">Lista de horas</a></li>
+							<li><a href="{{route('hora.new')}} ">Nueva hora</a></li>
+						</ul>
+				    </li>
+				    <li class="dropdawn">
+				    	<a href="" class="dropdown-toggle" data-toggle="dropdown">Maestros<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ route('maestros') }}">Lista de Maestros</a></li>
+							<li><a href="{{route('mtr.new')}} ">Nuevo maestro</a></li>
+						</ul>
+				    </li>
+				    <li class="dropdawn">
+				    	<a href="" class="dropdown-toggle" data-toggle="dropdown">Materias<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ route('materias') }}">Lista de Materias</a></li>
+							<li><a href="{{route('mat.new')}} ">Nueva materia</a></li>
 						</ul>
 				    </li>
 					<li><a href="{{-- {{action('AuthController@logOut')}} --}}">Cerrar Sesión</a>

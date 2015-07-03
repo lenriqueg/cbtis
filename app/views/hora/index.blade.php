@@ -2,12 +2,12 @@
 
 @section('section')
 
+<section class="container text-center">
+	<a href="{{ route('hora.new') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nueva hora">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</section>
 <section class="container">
-	<div class="row">
-		<a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nuevo dia">
-			<span class="glyphicon glyphicon-plus-sign text-primary"></span>
-		</a>
-	</div>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
@@ -24,8 +24,8 @@
 						<tr>
 							<td>{{$d->hora}}</td>
 							<td class="text-center">
-								<a href="{{ action('HoraController@show', $d->id) }}">
-									<span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></span>
+								<a href="{{ action('hora.show', $d->id) }}">
+									<i class="fa fa-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></i>
 								</a>
 							</td>
 						</tr>
