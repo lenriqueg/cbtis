@@ -8,26 +8,29 @@ class TurnoController extends \BaseController {
 		return View::make('turno.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /turno/create
-	 *
-	 * @return Response
-	 */
+
 	public function create()
 	{
-		//
+		return View::make('turno.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /turno
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = ['turno'	=> 'required | unique:turnos,turno'];
+
+		$validacion = Validator::make($data, $rules);
+
+		if ($validacion->passes()) {
+			$turno = new Turno();
+			$turno->turno = Input::get('turno');
+			$turno->save();
+
+			return Redirect::route('turno.show', $turno->id);
+		 } 
+
+		return Redirect::back()->withInput()->withErrors($validacion->messages());
 	}
 
 	public function show($id)
@@ -36,40 +39,28 @@ class TurnoController extends \BaseController {
 		return View::make('turno.show', compact('data'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /turno/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
 		//
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /turno/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
 		//
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /turno/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		//
+		try{
+			$data = Turno::find($id);
+			$data->destroy($id);
+			return Redirect::route('turnos');
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+			
+		}
 	}
 
 }

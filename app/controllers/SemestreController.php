@@ -14,15 +14,9 @@ class SemestreController extends \BaseController {
         return View::make('semestre.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /semestre/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
+		return View::make('semestre.create');
 	}
 
 	/**
@@ -33,7 +27,22 @@ class SemestreController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = ['semestre'	=> 'required | unique:semestres,semestre'];
+
+		$validacion = Validator::make($data, $rules);
+
+		if ($validacion->passes()) {
+			$semestre = new Semestre();
+			$semestre->semestre = Input::get('semestre');
+			$semestre->status = 1;
+			$semestre->save();
+
+			return Redirect::route('sem.show', $semestre->id);
+		 } 
+
+		return Redirect::back()->withInput()->withErrors($validacion->messages());
 	}
 
 	public function show($id)
@@ -66,16 +75,36 @@ class SemestreController extends \BaseController {
 
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /semestre/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	public function status($id)
+	{
+		$data = Semestre::find($id);
+
+		if ($data->status == 1) 
+		{
+			$data->status = 0;
+			$data->save();
+			
+			return Redirect::action('SemestreController@show', $id);
+		}
+
+		$data->status = 1;
+		$data->save();
+
+		return Redirect::action('SemestreController@show', $id);
+
+	}
+
 	public function destroy($id)
 	{
-		//
+		try{
+			$data = Semestre::find($id);
+			$data->destroy($id);
+			return Redirect::route('semestres');
+		}catch(\Illuminate\Database\QueryException $e){
+			return Redirect::back()
+				->with('mensaje_error', 'Información relacionada')
+				->withInput();
+		}
 	}
 
 }

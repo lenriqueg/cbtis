@@ -13,11 +13,11 @@
 			    	<p><small>identificador: {{ $data->id }}</small></p>
 			    	@if ($data->status == 1)
 					<small>Activado</small>
-			    	<span class="glyphicon glyphicon-record text-success" data-toggle="tooltip" data-placement="bottom" title="Salón activo"></span>
+			    	<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Semestre activo"></i>
 			    	@else
 		    		<p>
 		    			<small>Desactivado</small>
-		    			<span class="glyphicon glyphicon-ban-circle text-danger" data-toggle="tooltip" data-placement="bottom" title="Salón no activo"></span>
+		    			<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Semestre no activo"></i>
 		    		</p>
 			    	@endif
 				</div>
@@ -29,13 +29,32 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
-			<button class="btn btn-info">Actualizar</button>
-			@if ($data->status == 1)
-			<button class="btn btn-warning">Desactivar</button>
-			@else
-			<button class="btn btn-success">Activar</button>
-			@endif
-			<button class="btn btn-danger">Eliminar</button>
+			@if(Session::has('mensaje_error'))
+			<div class="alert alert-dismissable alert-danger">
+			  	<button type="button" class="close" data-dismiss="alert">×</button>
+	            {{ Session::get('mensaje_error') }}
+			</div>
+	        @endif
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							{{ Form::open(['route' => ['sem.status', $data->id], 'method' => 'PUT']) }}
+							@if ($data->status == 1)
+							<button class="btn btn-warning">Desactivar</button>
+							@else
+							<button class="btn btn-success">Activar</button>
+							@endif
+							{{ Form::close() }}
+						</td>
+						<td>
+							{{ Form::open(['route' => ['sem.destroy', $data->id], 'method' => 'DELETE']) }}
+							<button class="btn btn-danger">Eliminar</button>
+							{{ Form::close() }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="col-md-3"></div>
 	</div>

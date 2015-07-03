@@ -72,6 +72,20 @@
 							<li><a href="{{route('mat.new')}} ">Nueva materia</a></li>
 						</ul>
 				    </li>
+				    <li class="dropdawn">
+				    	<a href="" class="dropdown-toggle" data-toggle="dropdown">Semestres<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ route('semestres') }}">Lista de semestres</a></li>
+							<li><a href="{{route('sem.new')}} ">Nuevo semestre</a></li>
+						</ul>
+				    </li>
+				    <li class="dropdawn">
+				    	<a href="" class="dropdown-toggle" data-toggle="dropdown">Turnos<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ route('turnos') }}">Lista de turnos</a></li>
+							<li><a href="{{route('turno.new')}} ">Nuevo turno</a></li>
+						</ul>
+				    </li>
 					<li><a href="{{-- {{action('AuthController@logOut')}} --}}">Cerrar Sesión</a>
 				</ul>
 			</div>

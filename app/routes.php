@@ -10,6 +10,7 @@ require 'views/hora/routes.php';
 require 'views/maestro/routes.php';
 require 'views/maestro_materia/routes.php';
 require 'views/materia/routes.php';
+require 'views/semestre/routes.php';
 require 'views/turno/routes.php';
 require 'views/turno/routes.php';
 
