@@ -9,75 +9,62 @@ class GMController extends \BaseController {
 		return View::make('grupo_materia.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /pivot/create
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function create($id)
 	{
-		//
+		$materia = Materia::where('status', '=', 1)->get();
+		$grupo = Grupo::find($id);
+		return View::make('grupo_materia.create', compact('materia', 'grupo'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /pivot
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		//
+		$data = Input::except('_token');
+
+		$rules = [
+			'materia_id'	=> 'required',
+			'id'			=> 'required'
+		];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+
+			$g = Input::get('id');
+			$m = Input::get('materia_id');
+			$x = DB::table('grupo_materia')
+				->where('grupo_id', '=', $g)
+				->where('materia_id', '=', $m)->get();
+
+			if (!$x) {
+
+				$grupo = Grupo::find($g);
+				$grupo->materia()->attach($m);
+
+				return Redirect::route('gms', $g);
+			}
+			return Redirect::back()
+				->with('mensaje_error', 'El registro ya existe')
+				->withInput();
+
+		}
+			
+		return Redirect::back()->withInput()->withErrors($validator->messages());
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /pivot/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		$data = Grupo::find($id)->carrera;
 		return View::make('grupo_materia.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /pivot/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+	
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /pivot/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+	public function destroy($g, $m)
 	{
-		//
-	}
+		$grupo = Grupo::find($g);
+		$grupo->materia()->detach($m);
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /pivot/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		return Redirect::route('gms', $g);
 	}
 
 }

@@ -2,83 +2,61 @@
 
 class CMMController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /cmm
-	 *
-	 * @return Response
-	 */
 	public function index($id)
 	{
 		$data = Maestro::find($id);
 		return View::make('maestro_materia.index', compact('data'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /cmm/create
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function create($id)
 	{
-		//
+		$maestro =  Maestro::find($id);
+		$materia = Materia::where('status', '=', 1)->get();
+		$ciclo = Ciclo::where('status', '=', 1)->limit(1)->get();
+		return View::make('maestro_materia.create', compact('maestro', 'materia', 'ciclo'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /cmm
-	 *
-	 * @return Response
-	 */
 	public function store()
-	{
-		//
+	{	
+		$data = Input::except('_token');
+
+		$rules = [
+			'materia_id'	=> 'required',
+			'id'			=> 'required',
+			'ciclo_id'		=>'required'
+		];
+
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->passes()) {
+
+			$maestro = Input::get('id');
+			$materia = Input::get('materia_id');
+			$ciclo = Input::get('ciclo_id');
+
+			$x = DB::table('maestro_materia')
+				->where('maestro_id', '=', $maestro)
+				->where('materia_id', '=', $materia)
+				->where('ciclo_id', '=', $ciclo)->get();
+
+			if (!$x) {
+
+				$ciclo = Ciclo::find($ciclo);
+				$ciclo->materia()->attach($materia);
+				$ciclo->maestro()->attach($maestro);
+
+				return 'Listo para gurdar';
+			}
+			return Redirect::back()
+				->with('mensaje_error', 'El registro ya existe')
+				->withInput();
+
+		}
+			
+		return Redirect::back()->withInput()->withErrors($validator->messages());
+		
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /cmm/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /cmm/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /cmm/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /cmm/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
 		//

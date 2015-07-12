@@ -31,9 +31,11 @@
 						<td>{{ $d->materia }}</td>
 						<td>{{ $data->carrera->carrera }}</td>
 						<td class="text-center">
-							<a href="">
-								<span class="glyphicon glyphicon-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></span>
-							</a>
+							{{ Form::open([ 'route' => ['gm.destroy', $data->id, $d->id], 'method' => 'DELETE']) }}
+								<button class="btn btn-danger btn-sm">
+									<i class="fa fa-trash-o"></i>
+								</button>
+							{{ Form::close() }}
 						</td>
 					</tr>
 					@endforeach

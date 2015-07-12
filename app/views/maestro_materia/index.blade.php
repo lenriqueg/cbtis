@@ -2,6 +2,12 @@
 
 @section('section')
 
+<section class="container text-center">
+	<a href="{{ route('cmm.new', $data->id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</section>
+
 <section class="container">
 	<div class="row">
 		<div class="col-md-2"></div>

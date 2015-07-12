@@ -12,7 +12,12 @@ class Ciclo extends \Eloquent {
 
 	public function materia()
 	{
-		return $this->belongsToMany('Materia');
+		return $this->belongsToMany('Materia', 'maestro_materia');
+	}
+
+	public function maestro()
+	{
+		return $this->belongsToMany('Maestro', 'maestro_materia');
 	}
 
 }
