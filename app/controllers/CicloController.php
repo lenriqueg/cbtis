@@ -53,29 +53,6 @@ class CicloController extends \BaseController {
 		return View::make('ciclo.show', compact('data'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /ciclo/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		return 'Esto es put';
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /ciclo/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
 	public function status($id)
 	{

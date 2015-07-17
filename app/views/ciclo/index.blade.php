@@ -12,13 +12,13 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
+			<h3 class="text-center text-uppercase">Ciclos del cbtis #251</h3>
 			<table class="table table-bordered table-hover table-striped">
-				<caption class="text-uppercase">Ciclos Escolares del cbtis #251</caption>
 				<thead>
 					<tr>
 						<th class="text-center">Ciclo</th>
 						<th class="text-center">Opciones</th>
-						<th class="text-center">Estado</th>
+						<th class="text-center">Status</th>
 					</tr>
 				</thead>
 				<tbody>
