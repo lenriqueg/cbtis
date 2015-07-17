@@ -9,19 +9,21 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Descripcion</div>
                 <div class="panel-body">
-                    <p>Maestro: {{ $data->nombres }}</p>
-                    <p><small>Clave: {{ $data->clave }}</small></p>
+                    <p><strong>Maestro:</strong> {{ $data->nombres }}</p>
+                    <p><strong>Clave: </strong>{{ $data->clave }}</p>
                     <p>
                         <a href="{{ action('CMMController@index', $data->id) }}">
                             materias del maestro
                         </a>
                     </p>
                     @if ($data->status == 1)
-                    <small>Activado</small>
+                    <p>
+                        <strong>Activado</strong>
                     <i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Maestro activo"></i>
+                    </p>
                     @else
                     <p>
-                        <small>Desactivado</small>
+                        <strong>Desactivado</strong>
                         <i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Maestro no activo"></i>
                     </p>
                     @endif
@@ -30,7 +32,7 @@
         </div>
         <div class="col-md-3"></div>
     </div>
-    {{-- opciones del ciclo --}}
+    {{-- opciones del maestro --}}
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -45,7 +47,7 @@
                     <tr>
                         <td>
                             <a href="{{ route('mtr.edit', $data->id) }}">
-                                <button class="btn btn-info">Actualizar</button>
+                                <button class="btn btn-primary">Actualizar</button>
                             </a>
                         </td>
                         <td>

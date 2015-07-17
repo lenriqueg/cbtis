@@ -10,10 +10,10 @@
 
 <section class="container">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h3 class="text-center text-uppercase">maestros del cbtis #251</h3>
             <table class="table table-bordered table-hover table-striped">
-                <caption class="text-uppercase">Maestros del cbtis #251</caption>
                 <thead>
                 <tr>
                     <th class="text-center">Clave</th>
@@ -25,7 +25,7 @@
                 <tbody>
                 @foreach($data as $d)
                 <tr>
-                    <td>{{$d->clave}}</td>
+                    <td class="text-uppercase">{{$d->clave}}</td>
                     <td>{{$d->nombres}}</td>
                     <td class="text-center">
                         <a href="{{ route('mtr.show', $d->id) }}">
@@ -46,7 +46,7 @@
             </table>
             {{$data->links()}}
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
     </div>
 </section>
 
