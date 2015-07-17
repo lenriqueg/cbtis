@@ -8,9 +8,11 @@ class CMMController extends \BaseController {
 			->join('maestros', 'maestro_materia.maestro_id', '=', 'maestros.id')
 			->join('materias', 'maestro_materia.materia_id', '=', 'materias.id')
 			->join('ciclos', 'maestro_materia.ciclo_id', '=', 'ciclos.id')
-			->select('nombres', 'materia', 'ciclo')
+			->select('maestro_materia.id', 'maestro_id as m_id', 'nombres', 'materia', 'ciclo')
+			->where('maestro_id', '=', $id)
 			->orderBy('ciclo_id')
-			->get();
+			->orderBy('materia')
+			->paginate(6);
 		return View::make('maestro_materia.index', compact('data', 'id'));
 	}
 
@@ -66,9 +68,13 @@ class CMMController extends \BaseController {
 		
 	}
 
-	public function destroy($id)
+	public function destroy($id, $m)
 	{
-		//
+		DB::table('maestro_materia')
+			->where('id', '=', $id)
+			->delete();
+
+		return Redirect::route('cmms', $m);
 	}
 
 }

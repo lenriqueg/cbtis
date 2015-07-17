@@ -23,6 +23,7 @@
 						<th class="text-center">Nombre</th>
 						<th class="text-center">Materia</th>
 						<th class="text-center">Ciclo</th>
+						<th class="text-center">Opciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,10 +32,18 @@
 						<td>{{ $d->nombres }}</td>
 						<td>{{ $d->materia }}</td>
 						<td>{{ $d->ciclo }}</td>
+						<td class="text-center">
+							{{ Form::open([ 'route' => ['cmm.destroy', $d->id, $d->m_id], 'method' => 'DELETE']) }}
+								<button class="btn btn-danger btn-sm">
+									<i class="fa fa-trash-o"></i>
+								</button>
+							{{ Form::close() }}
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
 			</table>
+			{{ $data->links() }}
 		</div>
 		<div class="col-md-2"></div>
 	</div>

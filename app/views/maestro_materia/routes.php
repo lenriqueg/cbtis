@@ -18,4 +18,4 @@ Route::post('cmm_new', ['as' => 'cmm.post', 'uses' => 'CMMController@store']);
 
 /* eliminar */
 
-Route::delete('cmm_destroy_{g}_{m}', ['as' => 'cmm.destroy', 'uses' => 'CMMController@destroy']);
+Route::delete('cmm_destroy_{id}_{m}', ['as' => 'cmm.destroy', 'uses' => 'CMMController@destroy']);
