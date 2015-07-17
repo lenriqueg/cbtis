@@ -12,8 +12,8 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
+			<h3 class="text-center text-uppercase">turnos del cbtis #251</h3>
 			<table class="table table-bordered table-hover table-striped">
-				<caption class="text-uppercase">Turnos del CBTIS #251</caption>
 				<thead>
 					<tr>
 						<th class="text-center">Turno</th>
