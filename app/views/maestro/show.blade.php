@@ -7,7 +7,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Descripcion</div>
+                <div class="panel-heading">Descripción</div>
                 <div class="panel-body">
                     <p><strong>Maestro:</strong> {{ $data->nombres }}</p>
                     <p><strong>Clave: </strong>{{ $data->clave }}</p>

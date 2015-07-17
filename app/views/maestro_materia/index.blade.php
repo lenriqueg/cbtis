@@ -14,7 +14,7 @@
 		<div class="col-md-8">
 			<table class="table table-bordered table-hover table-striped">
 				<caption class="text-uppercase">
-					<button class="btn btn-success btn-sm" type="text">
+					<button class="btn btn-primary btn-sm" type="text">
 						Total materias <span class="badge">{{ count($data) }}</span>
 					</button>
 				</caption>

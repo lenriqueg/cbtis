@@ -7,7 +7,7 @@
 		<div class="col-md-1"></div>
 		<div class="col-sm-6 col-md-6">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Nueva aula</div>
+				<div class="panel-heading">Actualizar especialidad</div>
 				<div class="panel-body">
 					{{ Form::open(['route' => ['esp.put', $data->id], 'method' => 'PUT'], ['class' => 'form']) }}
 						<div class="form-group">

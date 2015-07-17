@@ -9,7 +9,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-			    	<p><strong>Carrera:</strong> {{ $data->carrera }}</p>
+			    	<p><strong>Especialidad:</strong> {{ $data->carrera }}</p>
 			    	<p><strong>identificador:</strong> {{ $data->id }}</p>
 			    	@if ($data->status == 1)
 			    	<p>
@@ -46,12 +46,10 @@
 							</a>
 						</td>
 						<td>
+							{{ Form::open(['route' => ['esp.status', $data->id], 'method' => 'PUT']) }}
 							@if ($data->status == 1)
-							{{ Form::open(['route' => ['esp.status', $data->id], 'method' => 'PUT']) }}
 							<button class="btn btn-warning">Desactivar</button>
-							{{ Form::close() }}
 							@else
-							{{ Form::open(['route' => ['esp.status', $data->id], 'method' => 'PUT']) }}
 							<button class="btn btn-success">Activar</button>
 							{{ Form::close() }}
 							@endif

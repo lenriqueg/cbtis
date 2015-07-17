@@ -7,16 +7,18 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">Descripcion</div>
+				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-			    	<p>Ciclo: <strong>{{ $data->ciclo }}</strong></p>
-			    	<p><small>identificador: {{ $data->id }}</small></p>
+			    	<p><strong>Ciclo: </strong>{{ $data->ciclo }}</p>
+			    	<p><strong>identificador: </strong>{{ $data->id }}</p>
 			    	@if ($data->status == 1)
-					<small>Activado</small>
-			    	<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Ciclo activo"></i>
+			    	<p>
+						<strong>Activado</strong>
+			    		<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Ciclo activo"></i>
+			    	</p>
 			    	@else
 		    		<p>
-		    			<small>Desactivado</small>
+		    			<strong>Desactivado</strong>
 		    			<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Ciclo no activo"></i>
 		    		</p>
 			    	@endif

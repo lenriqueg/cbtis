@@ -7,7 +7,7 @@
 		<div class="col-md-1"></div>
 		<div class="col-sm-6 col-md-6">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Nuevo ciclo</div>
+				<div class="panel-heading">Nuevo maestro</div>
 				<div class="panel-body">
 					{{ Form::open(['route' => 'mtr.new'], ['class' => 'form']) }}
 					<div class="form-group">

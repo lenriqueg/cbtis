@@ -14,9 +14,11 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<table class="table table-bordered table-hover table-striped">
-				<caption class="text-uppercase">
-					Grupo: {{ $data->grupo }}
-					Total de materias: {{ count($data->materia) }}
+				<caption>
+					<button class="btn btn-primary btn-sm">
+						Grupo <span class="badge">{{ $data->grupo }}</span>
+						Total de materias: <span class="badge">{{ count($data->materia) }}</span>
+					</button>
 				</caption>
 				<thead>
 					<tr>
