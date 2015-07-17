@@ -7,24 +7,22 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">Descripcion</div>
+				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-			    	<p>Salón: {{ $data->aula }}</p>
-			    	<p><small>identificador: {{ $data->id }}</small></p>
-			    	<p><small>Descripcion: {{ $data->descripcion }}</small></p>
+			    	<p><strong>Salón:</strong> {{ $data->aula }}</p>
+			    	<p><strong>identificador:</strong> {{ $data->id }}</p>
+			    	<p><strong>Descripción: </strong>{{ $data->descripcion }}</p>
 			    	@if ($data->status == 1)
 			    	<p>
-			    		<small>Activo</small>
+			    		<strong>Activo</strong>
 						<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Salón activo"></i>
 			    	</p>
 					@else
 					<p>
-						<small>No activo</small>
+						<strong>No activo</strong>
 						<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Salón no activo"></i>
 					</p>
 					@endif
-					<p>Fecha de creacion: {{ $data->created_at }}</p>
-					<p>Fecha de Actualizacion: {{ $data->updated_at }}</p>
 				</div>
 			</div>
 		</div>
@@ -45,7 +43,7 @@
 					<tr>
 						<td>
 							<a href="{{ action('AulaController@edit', $data->id) }}">
-								<button class="btn btn-info">Actualizar</button>
+								<button class="btn btn-primary">Actualizar</button>
 							</a>
 						</td>
 						<td>

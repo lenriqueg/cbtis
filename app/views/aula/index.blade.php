@@ -12,12 +12,12 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
+			<h3 class="text-center text-uppercase">Aulas del cbtis #251</h3>
 			<table class="table table-bordered table-hover table-striped">
-				<caption class="text-uppercase">Aulas del CBTIS #251</caption>
 				<thead>
 					<tr>
 						<th class="text-center">Aula</th>
-						<th class="text-center">Descripcion</th>
+						<th class="text-center">Descripción</th>
 						<th class="text-center">Opciones</th>
 						<th class="text-center">Status</th>
 					</tr>
@@ -25,7 +25,7 @@
 				<tbody>
 					@foreach($data as $d)
 						<tr>
-							<td>{{$d->aula}}</td>
+							<td class="text-uppercase">{{$d->aula}}</td>
 							<td>{{ $d->descripcion }}</td>
 							<td class="text-center">
 								<a href="{{ action('AulaController@show', $d->id) }}">
