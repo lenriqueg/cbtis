@@ -3,7 +3,7 @@
 @section('section')
 
 <section class="container text-center">
-	<a href="{{ route('cmm.new', $data->id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo">
+	<a href="{{ route('cmm.new', $id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo">
 		<i class="fa fa-plus-circle"></i>
 	</a>
 </section>
@@ -14,30 +14,23 @@
 		<div class="col-md-8">
 			<table class="table table-bordered table-hover table-striped">
 				<caption class="text-uppercase">
-					Maestro: {{ $data->nombres }}
-					Total de materias: {{ count($data->materia) }}
+					<button class="btn btn-success btn-sm" type="text">
+						Total materias <span class="badge">{{ count($data) }}</span>
+					</button>
 				</caption>
 				<thead>
 					<tr>
+						<th class="text-center">Nombre</th>
 						<th class="text-center">Materia</th>
 						<th class="text-center">Ciclo</th>
-						<th class="text-center">Opciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($data->materia as $d)
+					@foreach ($data as $d)
 					<tr>
+						<td>{{ $d->nombres }}</td>
 						<td>{{ $d->materia }}</td>
-						@foreach ($data->ciclo as $d)
 						<td>{{ $d->ciclo }}</td>
-						<td>
-							@if ($d->status == 1)
-							<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Materia activo"></i>
-							@else
-							<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Materia no activo"></i>
-							@endif
-						</td>
-						@endforeach
 					</tr>
 					@endforeach
 				</tbody>

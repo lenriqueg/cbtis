@@ -1,6 +1,6 @@
 <?php
 
-Route::get('maestro/{id}/materias/', ['as' => 'cmm', 'uses' => 'CMMController@index']);
+Route::get('maestro/{id}/materias/', ['as' => 'cmms', 'uses' => 'CMMController@index']);
 
 /* crear */
 

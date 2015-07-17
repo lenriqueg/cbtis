@@ -4,8 +4,14 @@ class CMMController extends \BaseController {
 
 	public function index($id)
 	{
-		$data = Maestro::find($id);
-		return View::make('maestro_materia.index', compact('data'));
+		$data = DB::table('maestro_materia')
+			->join('maestros', 'maestro_materia.maestro_id', '=', 'maestros.id')
+			->join('materias', 'maestro_materia.materia_id', '=', 'materias.id')
+			->join('ciclos', 'maestro_materia.ciclo_id', '=', 'ciclos.id')
+			->select('nombres', 'materia', 'ciclo')
+			->orderBy('ciclo_id')
+			->get();
+		return View::make('maestro_materia.index', compact('data', 'id'));
 	}
 
 	public function create($id)
@@ -41,11 +47,14 @@ class CMMController extends \BaseController {
 
 			if (!$x) {
 
-				$ciclo = Ciclo::find($ciclo);
-				$ciclo->materia()->attach($materia);
-				$ciclo->maestro()->attach($maestro);
+				DB::table('maestro_materia')
+					->insertGetId([
+						'ciclo_id'		=> $ciclo,
+						'materia_id'	=> $materia,
+						'maestro_id'	=> $maestro
+					]);
 
-				return 'Listo para gurdar';
+				return Redirect::route('cmms' ,$maestro);
 			}
 			return Redirect::back()
 				->with('mensaje_error', 'El registro ya existe')
