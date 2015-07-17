@@ -7,17 +7,19 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Descripcion</div>
+                <div class="panel-heading">Descripción</div>
                 <div class="panel-body">
-                    <p>Materia: {{ $data->materia }}</p>
-                    <p><small>Horas practicas: {{ $data->hrs_practicas }}</small></p>
-                    <p><small>Horas teoricas: {{ $data->hrs_teoricas }}</small></p>
+                    <p><strong>Materia:</strong> {{ $data->materia }}</p>
+                    <p><strong>Horas practicas: </strong>{{ $data->hrs_practicas }}</p>
+                    <p><strong>Horas teoricas: </strong>{{ $data->hrs_teoricas }}</p>
                     @if ($data->status == 1)
-                    <small>Activado</small>
-                    <i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Materia activo"></i>
+                    <p>
+                        <strong>Activado</strong>
+                        <i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Materia activo"></i>
+                    </p>
                     @else
                     <p>
-                        <small>Desactivado</small>
+                        <strong>Desactivado</strong>
                         <i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Materia no activo"></i>
                     </p>
                     @endif
@@ -26,7 +28,7 @@
         </div>
         <div class="col-md-3"></div>
     </div>
-    {{-- opciones del ciclo --}}
+    {{-- opciones de la materia --}}
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -41,7 +43,7 @@
                     <tr>
                         <td>
                             <a href="{{ route('mat.edit', $data->id) }}">
-                                <button class="btn btn-info">Actualizar</button>
+                                <button class="btn btn-primary">Actualizar</button>
                             </a>
                         </td>
                         <td>

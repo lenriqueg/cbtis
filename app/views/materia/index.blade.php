@@ -10,21 +10,16 @@
 
 <section class="container">
     <div class="row">
-        <a href="" data-toggle="tooltip" data-placement="bottom" title="Añadir nueva materia">
-            <span class="glyphicon glyphicon-plus-sign text-primary"></span>
-        </a>
-    </div>
-    <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
+            <h3 class="text-center text-uppercase">materias del cbtis #251</h3>
             <table class="table table-bordered table-hover table-striped">
-                <caption class="text-uppercase">Materias del cbtis #251</caption>
                 <thead>
                 <tr>
                     <th class="text-center">Materia</th>
                     <th class="text-center">Horas practicas</th>
                     <th class="text-center">Horas teoricas</th>
-                    <td class="text-center">Opciones</td>
+                    <th class="text-center">Opciones</th>
                     <th class="text-center">Estado</th>
                 </tr>
                 </thead>

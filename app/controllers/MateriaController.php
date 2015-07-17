@@ -67,7 +67,9 @@ class MateriaController extends \BaseController {
 		$data = Input::except('_token');
 
 		$rules = [
-			'materia' => 'required',
+			'materia' 		=> 'required',
+			'hrs_practicas' => 'integer',
+			'hrs_teoricas' 	=> 'integer',
 		];
 
 		$validator = Validator::make($data, $rules);
