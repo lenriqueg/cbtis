@@ -7,12 +7,12 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">Descripcion</div>
+				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-		    		<p>Grupo: {{ $data->grupo }}</p>
-		    		<p><small>Turno: {{ $data->turno->turno }}</small></p>
-		    		<p><small>Semestre: {{ $data->semestre->semestre }}</small></p>
-		    		<p>Carrera: {{ $data->carrera->carrera }}</p>
+		    		<p><strong>Grupo:</strong> {{ $data->grupo }}</p>
+		    		<p><strong>Turno: </strong>{{ $data->turno->turno }}</p>
+		    		<p><strong>Semestre: </strong>{{ $data->semestre->semestre }}</p>
+		    		<p><strong>Carrera:</strong> {{ $data->carrera->carrera }}</p>
 		    		<a href="{{ action('GMController@index', $data->id) }}">ver materias</a>
 
 				</div>
