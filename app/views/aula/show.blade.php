@@ -23,6 +23,8 @@
 						<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Salón no activo"></i>
 					</p>
 					@endif
+					<p>Fecha de creacion: {{ $data->created_at }}</p>
+					<p>Fecha de Actualizacion: {{ $data->updated_at }}</p>
 				</div>
 			</div>
 		</div>

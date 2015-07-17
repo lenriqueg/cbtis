@@ -2,7 +2,6 @@
 
 class Grupo extends \Eloquent {
 	protected $fillable = [];
-	public $timestamps = false;
 
 	public function carrera()
 	{

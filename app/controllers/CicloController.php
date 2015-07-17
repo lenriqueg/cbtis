@@ -5,7 +5,7 @@ class CicloController extends \BaseController {
 
 	public function index()
 	{
-		$data = Ciclo::paginate(5);
+		$data = Ciclo::orderBy('id', 'desc')->paginate(5);
 
 		if (count($data) == 0) {
 			$link = route('ciclo.new');

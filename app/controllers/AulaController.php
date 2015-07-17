@@ -4,7 +4,7 @@ class AulaController extends \BaseController {
 
 	public function index()
 	{
-		$data = Aula::paginate(7);
+		$data = Aula::orderBy('aula')->paginate(7);
 
 		if (count($data) == 0) {
 			$link = route('aula.new');
