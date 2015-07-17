@@ -9,14 +9,16 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-			    	<p>Carrera: {{ $data->carrera }}</p>
-			    	<p><small>identificador: {{ $data->id }}</small></p>
+			    	<p><strong>Carrera:</strong> {{ $data->carrera }}</p>
+			    	<p><strong>identificador:</strong> {{ $data->id }}</p>
 			    	@if ($data->status == 1)
-					<small>Activado</small>
-					<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Especialidad activa"></i>
+			    	<p>
+						<strong>Activado</strong>
+						<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Especialidad activa"></i>
+			    	</p>
 			    	@else
 		    		<p>
-		    			<small>Desactivado</small>
+		    			<strong>Desactivado</strong>
 		    			<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Especialidad no activa"></i>
 		    		</p>
 			    	@endif
@@ -40,7 +42,7 @@
 					<tr>
 						<td>
 							<a href="{{ URL::route('esp.edit', $data->id) }}">
-								<button class="btn btn-info">Actualizar</button>
+								<button class="btn btn-primary">Actualizar</button>
 							</a>
 						</td>
 						<td>

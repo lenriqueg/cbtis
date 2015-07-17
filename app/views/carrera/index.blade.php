@@ -12,11 +12,11 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
+			<h3 class="text-center text-uppercase">Especialidades del cbtis #251</h3>
 			<table class="table table-bordered table-hover table-striped">
-				<caption class="text-uppercase">Especialidades del CBTIS #251</caption>
 				<thead>
 					<tr>
-						<th class="text-center">Especialidades</th>
+						<th class="text-center">Especialidad</th>
 						<th class="text-center">Grupos</th>
 						<th class="text-center">Opciones</th>
 						<th class="text-center">Estado</th>
