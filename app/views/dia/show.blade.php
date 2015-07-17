@@ -7,10 +7,10 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">Descripcion</div>
+				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-			    	<p>{{ $data->dia }}</p>
-			    	<p><small>identificador: {{ $data->id }}</small></p>
+			    	<p><strong>Dia: </strong>{{ $data->dia }}</p>
+			    	<p><strong>identificador: </strong>{{ $data->id }}</p>
 				</div>
 			</div>
 		</div>
