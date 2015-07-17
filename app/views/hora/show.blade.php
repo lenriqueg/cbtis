@@ -7,15 +7,15 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
-				<div class="panel-heading">Descripcion</div>
+				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-			    	<p>Hora: {{ $data->hora }}</p>
+			    	<p><strong>Hora:</strong> {{ $data->hora }}</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3"></div>
 	</div>
-	{{-- opciones del ciclo --}}
+	{{-- opciones de las horas --}}
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
