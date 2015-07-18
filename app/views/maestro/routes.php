@@ -1,23 +1,25 @@
 <?php
 
-Route::get('maestros', ['as' => 'maestros', 'uses' => 'MaestroController@index']);
+$modulo = "modulo_general";
 
-Route::get('maestro_show_{id}', ['as' => 'mtr.show', 'uses' => 'MaestroController@show']);
+Route::get($modulo.'maestros', ['as' => 'maestros', 'uses' => 'MaestroController@index']);
+
+Route::get($modulo.'maestro_show_{id}', ['as' => 'mtr.show', 'uses' => 'MaestroController@show']);
 
 /* crear */
 
-Route::get('maestro_new', ['as' => 'mtr.new', 'uses' => 'MaestroController@create']);
+Route::get($modulo.'maestro_new', ['as' => 'mtr.new', 'uses' => 'MaestroController@create']);
 
-Route::post('maestro_new', ['as' => 'mtr.new', 'uses' => 'MaestroController@store']);
+Route::post($modulo.'maestro_new', ['as' => 'mtr.new', 'uses' => 'MaestroController@store']);
 
 /* actualizar */
 
-Route::get('maestro_edit_{id}', ['as' => 'mtr.edit', 'uses' => 'MaestroController@edit']);
+Route::get($modulo.'maestro_edit_{id}', ['as' => 'mtr.edit', 'uses' => 'MaestroController@edit']);
 
-Route::put('maestro_edit_{id}', ['as' => 'mtr.put', 'uses' => 'MaestroController@update']);
+Route::put($modulo.'maestro_edit_{id}', ['as' => 'mtr.put', 'uses' => 'MaestroController@update']);
 
-Route::put('maestro_status_{id}', ['as' => 'mtr.status', 'uses' => 'MaestroController@status']);
+Route::put($modulo.'maestro_status_{id}', ['as' => 'mtr.status', 'uses' => 'MaestroController@status']);
 
 /* eliminar */
 
-Route::delete('maestro_show_{id}', ['as' => 'mtr.destroy', 'uses' => 'MaestroController@destroy']);
+Route::delete($modulo.'maestro_show_{id}', ['as' => 'mtr.destroy', 'uses' => 'MaestroController@destroy']);

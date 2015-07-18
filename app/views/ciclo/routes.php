@@ -1,23 +1,25 @@
 <?php
 
-Route::get('ciclos', ['as' => 'ciclos', 'uses' => 'CicloController@index']);
+$modulo = "modulo_general";
 
-Route::get('ciclo_show_{id}', ['as' => 'ciclo.show', 'uses' => 'CicloController@show']);
+Route::get($modulo.'ciclos', ['as' => 'ciclos', 'uses' => 'CicloController@index']);
+
+Route::get($modulo.'ciclo_show_{id}', ['as' => 'ciclo.show', 'uses' => 'CicloController@show']);
 
 /* crear */
 
-Route::get('ciclo_new', ['as' => 'ciclo.new', 'uses' => 'CicloController@create']);
+Route::get($modulo.'ciclo_new', ['as' => 'ciclo.new', 'uses' => 'CicloController@create']);
 
-Route::post('ciclo_new', ['as' => 'ciclo.new', 'uses' => 'CicloController@store']);
+Route::post($modulo.'ciclo_new', ['as' => 'ciclo.new', 'uses' => 'CicloController@store']);
 
 /* actualizar */
 
-// Route::put('ciclo-{id}', ['as' => 'ciclo.edit', 'uses' => 'CicloController@edit']);
+// Route::put($modulo.'ciclo-{id}', ['as' => 'ciclo.edit', 'uses' => 'CicloController@edit']);
 
-// Route::put('ciclo_edit_{id}', ['as' => 'ciclo.put', 'uses' => 'CicloController@update']);
+// Route::put($modulo.'ciclo_edit_{id}', ['as' => 'ciclo.put', 'uses' => 'CicloController@update']);
 
-Route::put('ciclo_status_{id}', ['as' => 'ciclo.status', 'uses' => 'CicloController@status']);
+Route::put($modulo.'ciclo_status_{id}', ['as' => 'ciclo.status', 'uses' => 'CicloController@status']);
 
 /* eliminar */
 
-Route::delete('ciclo_status_{id}', ['as' => 'ciclo.destroy', 'uses' => 'CicloController@destroy']);
+Route::delete($modulo.'ciclo_status_{id}', ['as' => 'ciclo.destroy', 'uses' => 'CicloController@destroy']);
