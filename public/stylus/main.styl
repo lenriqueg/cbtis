@@ -1,14 +1,54 @@
 @import "nib"
+@import "animate.css"
 @import "bootstrap.min.css"
 @import "font-awesome.min.css"
-azul = #2196F3
+azul = #3F51B5
 verde = #64DD17
+gris = #E8EAF6
+gris2 = #C5CAE9
 
-.card
+/*
+ *css iconos
+ */
+ .fa
+ 	color azul
+/*
+ *css componente de grupo de especialidades
+ */
+.groups
 	display flex
-	justify-content center
-	&-action
-		font-size 2.5em
+	flex-wrap wrap
+	justify-content space-around
+	margin-bottom 3em
+.group
+	border-radius .15em
+	width 300px
+	color white
+	margin-top 2em
+	text-align center
+	border .1em solid gris2
+	&__name
+		background azul
+		margin-bottom 0
+		padding 2em 0
+		text-transform uppercase
+		vertical-align text-botoom
+	&--footer
+		width 100%
+		background gris
+		padding .5em 0
+		&__link
+			color black
+			opacity .4
+			transition all .5s
+		&__link:hover
+			text-decoration none
+			color black
+			opacity .9
+		
+/*
+ *css null
+ */
 .face
 	color dodgerblue
 	font-size 10em

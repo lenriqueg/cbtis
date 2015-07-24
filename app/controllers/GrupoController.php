@@ -4,7 +4,15 @@ class GrupoController extends \BaseController {
 
 	public function index($id)
 	{
-		$data = Carrera::find($id)->grupo;
+		$data = DB::table('grupos')
+			->join('turnos', 'turno_id', '=', 'turnos.id')
+			->join('semestres', 'semestre_id', '=', 'semestres.id')
+			->join('carreras', 'carrera_id', '=', 'carreras.id')
+			->select('grupo', 'turno', 'semestre', 'carrera', 'grupos.id as g_id')
+			->where('carrera_id', '=', $id)
+			->orderBy('turno')
+			->orderBy('grupo')
+			->paginate(6);
 
 		if (count($data) == 0) {
 			$link = URL::route('grupo.new', $id);
@@ -55,28 +63,11 @@ class GrupoController extends \BaseController {
 		return View::make('grupo.show', compact('data'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /grupo/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+	public function update()
 	{
-		//
-	}
+		$ciclo = Ciclo::where('status', '=', 1)->get();
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /grupo/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+		return $ciclo;
 	}
 
 	/**

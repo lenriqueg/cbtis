@@ -13,6 +13,11 @@
 		<div class="col-md-8">
 			<h3 class="text-center text-uppercase">grupos del cbtis #251</h3>
 			<table class="table table-bordered table-hover table-striped">
+				<caption>
+					<button class="btn btn-primary btn-sm" type="text">
+						Total grupos <span class="badge">{{ $data->getTotal() }}</span>
+					</button>
+				</caption>
 				<thead>
 					<tr>
 						<th class="text-center">Grupo</th>
@@ -26,19 +31,20 @@
 					@foreach($data as $d)
 					<tr>
 						<td>{{ $d->grupo }}</td>
-						<td>{{ $d->turno->turno }}</td>
-						<td>{{ $d->semestre->semestre }}</td>
+						<td>{{ $d->turno }}</td>
+						<td>{{ $d->semestre }}</td>
 						<td class="text-center">
-							<a href="{{ action('GrupoController@show', $d->id) }}">
+							<a href="{{ action('GrupoController@show', $d->g_id) }}">
 								<i class="fa fa-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></i>
 							</a>
 						</td>
-						<td>{{ $d->carrera->carrera }}</td>
+						<td>{{ $d->carrera }}</td>
 					</tr>
 
 					@endforeach
 				</tbody>
 			</table>
+			{{ $data->links() }}
 		</div>
 		<div class="col-md-2"></div>
 	</div>
