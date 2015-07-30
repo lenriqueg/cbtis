@@ -26,7 +26,7 @@
 						{{ Form::label('materia_id', 'Materia') }}
 						<select name="materia_id" class="form-control">
 							@foreach ($materia as $d)
-							<option value="{{ $d->id }}">{{ $d->materia }}</option>
+							<option value="{{ $d->id }}">{{ $d->grupo }} - {{ $d->materia }}</option>
 							@endforeach
 						</select>
 						{{ Form::hidden('id', $maestro->id) }}

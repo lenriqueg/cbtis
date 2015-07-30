@@ -19,9 +19,15 @@ class CMMController extends \BaseController {
 	public function create($id)
 	{
 		$maestro =  Maestro::find($id);
-		$materia = Materia::where('status', '=', 1)->get();
+		$materia = DB::table('grupo_materia')
+			->join('materias', 'materias.id', '=', 'materia_id')
+			->join('grupos', 'grupos.id', '=', 'grupo_id')
+			->where('grupos.status', '=', 1)
+			->select('grupo', 'materia', 'materias.id as id')
+			->get();
 		$ciclo = Ciclo::where('status', '=', 1)->limit(1)->get();
 		return View::make('maestro_materia.create', compact('maestro', 'materia', 'ciclo'));
+		// return $materia;
 	}
 
 	public function store()
