@@ -53,16 +53,28 @@ class CMMController extends \BaseController {
 				->where('materia_id', '=', $materia)
 				->where('ciclo_id', '=', $ciclo)->get();
 
+			$y = DB::table('maestro_materia')
+				->where('materia_id', '=', $materia)
+				->where('ciclo_id', '=', $ciclo)->get();
+
 			if (!$x) {
 
-				DB::table('maestro_materia')
-					->insertGetId([
-						'ciclo_id'		=> $ciclo,
-						'materia_id'	=> $materia,
-						'maestro_id'	=> $maestro
-					]);
+				if (!$y) {
+					
+					DB::table('maestro_materia')
+						->insertGetId([
+							'ciclo_id'		=> $ciclo,
+							'materia_id'	=> $materia,
+							'maestro_id'	=> $maestro
+						]);
 
-				return Redirect::route('cmms' ,$maestro);
+					return Redirect::route('cmms' ,$maestro);
+
+				}
+				return Redirect::back()
+					->with('mensaje_error', 'La materia ha sido asignada a otro docente')
+					->withInput();
+
 			}
 			return Redirect::back()
 				->with('mensaje_error', 'El registro ya existe')

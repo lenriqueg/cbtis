@@ -38,7 +38,7 @@
 						{{$errors->first('ciclo_id', '<p class="text-danger">:message</p>')}}
 					</div>
 					<div class="form-group">
-						<button class="btn btn-info">Guardar</button>
+						<button class="btn btn-primary">Guardar</button>
 					</div>
 					{{ Form::close() }}
 			    </div>
