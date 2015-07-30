@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CBTIS #251</title>
-	<link rel="stylesheet" href=" {{ asset('css/main.css') }}">
+	{{ HTML::style('css/main.css') }}
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
@@ -106,11 +106,8 @@
 	</div>
 
 	@yield('scripts')
-	<script>
-		$(function () {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-	</script>
+	
+	{{ HTML::script('js/main.js') }}
 	
 </body>
 </html>

@@ -7,6 +7,34 @@
 		<i class="fa fa-plus-circle"></i>
 	</a>
 </section>
+
+<section class="container">
+	<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+				<div class="panel-heading">¿Qué semestres tendrá este ciclo? <i class="fa fa-pencil-square pull-right text-primary fa-2x" id="mostrar"></i></div>
+				<div class="panel-body">
+				{{ Form::open(['route' => 'grupo.status', 'method' => 'PUT']) }}
+					@foreach ($data as $d)
+					<div class="form-group">
+						<label>
+							{{ $d->semestre }}
+							<input type="checkbox" name="semestre[]" value="{{ $d->s_id }}">
+						</label>
+					</div>				
+					@endforeach
+					<div class="form-group">
+						<button class="btn btn-primary">Empezar</button>
+					</div>
+				{{ Form::close() }}
+				</div>
+			</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>	
+</section>
+
 <section class="container">
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -56,5 +84,18 @@
 		<div class="col-md-2"></div>
 	</div>
 </section>
+
+@stop
+
+@section('scripts')
+
+<script>
+	(function(){
+		$('form').hide();
+		$('#mostrar').on('click', function (){
+			$('form').toggle('slow');
+		});
+	})();
+</script>
 
 @stop

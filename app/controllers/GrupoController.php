@@ -8,7 +8,7 @@ class GrupoController extends \BaseController {
 			->join('turnos', 'turno_id', '=', 'turnos.id')
 			->join('semestres', 'semestre_id', '=', 'semestres.id')
 			->join('carreras', 'carrera_id', '=', 'carreras.id')
-			->select('grupo', 'turno', 'semestre', 'carrera', 'grupos.status', 'grupos.id as g_id')
+			->select('grupo', 'turno', 'semestre', 'carrera', 'grupos.status', 'grupos.id as g_id', 'semestres.id as s_id')
 			->where('carrera_id', '=', $id)
 			->orderBy('turno')
 			->orderBy('grupo')
@@ -63,7 +63,7 @@ class GrupoController extends \BaseController {
 		return View::make('grupo.show', compact('data'));
 	}
 
-	public function update()
+	public function status()
 	{
 		$data = Input::get('semestre');
 
@@ -76,7 +76,7 @@ class GrupoController extends \BaseController {
 				Grupo::where('semestre_id', '=', [$d])
 					->update(['status' => 1]);
 			}
-			return Redirect::route('hr.esp');
+			return Redirect::back();
 		}
 		return Redirect::back();
 	}
