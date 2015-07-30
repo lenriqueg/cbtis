@@ -30,6 +30,10 @@ class HorarioController extends \BaseController {
 	
 	public function horario($c_id, $g_id)
 	{
-		return View::make('horario.horario.index');
+		$hora = Hora::all();
+		$data = Grupo::find($g_id)->materia;
+		$Jdata = Response::json($data);
+
+		return View::make('horario.horario.index', compact('data', 'hora', 'Jdata'));
 	}
 }

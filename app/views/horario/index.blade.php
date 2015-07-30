@@ -10,9 +10,6 @@
 
 	@yield('section')
 
-	{{ HTML::script('js/vendor/angular.js') }}
-	{{ HTML::script('js/app.js') }}
-	{{ HTML::script('js/angular/controller/especialidad.js') }}
-	{{ HTML::script('js/angular/service/especialidadService.js') }}
+	@yield('scripts')
 </body>
 </html>

@@ -1,5 +1,2 @@
 
-var app = angular.module('app', ['app.service'], function($interpolateProvider){
-	$interpolateProvider.startSymbol('<%');
-	$interpolateProvider.endSymbol('%>');
-});
+var app = angular.module('app', ['app.service']);
