@@ -17,4 +17,4 @@ require 'views/turno/routes.php';
 
 Route::get('/', ['as' => 'root', 'uses' => 'HomeController@index']);
 
-Route::get('p', ['as' => 'API.esp', 'uses' => 'GrupoController@update']);
+Route::get('api/{id}', ['as' => 'API.esp', 'uses' => 'APIController@index']);

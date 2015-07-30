@@ -16,7 +16,7 @@ Route::post($modulo.'/grupo_new', ['as' => 'grupo.post', 'uses' => 'GrupoControl
 
 Route::get($modulo.'/grupo_edit_{id}', ['as' => 'grupo.edit', 'uses' => 'GrupoController@edit']);
 
-Route::put($modulo.'/grupo_edit_{id}', ['as' => 'grupo.put', 'uses' => 'GrupoController@update']);
+Route::put($modulo.'/grupo_edit', ['as' => 'grupo.put', 'uses' => 'GrupoController@update']);
 
 Route::put($modulo.'/grupo_status_{id}', ['as' => 'grupo.status', 'uses' => 'GrupoController@status']);
 

@@ -2,10 +2,11 @@
 
 class APIController extends \BaseController {
 
-	public function especialidad()
+	public function index($id)
 	{
-		$data = Carrera::all();
-		return Response::json($data);
+		$g = Grupo::find($id);
+		$m = $g->materia;
+		return Response::json(['grupo' => $g]);
 	}
 
 }

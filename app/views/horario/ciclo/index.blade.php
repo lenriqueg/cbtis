@@ -5,16 +5,32 @@
 <div class="container animated fadeIn">
 	<h2 class="text-center">Ciclo Actual</h2>
 	<div class="groups">
-	@foreach ($data as $d)
+	@foreach ($ciclo as $d)
 		<div class="group">
 			<p class="group__name">{{ $d->ciclo }}</p>
 			<div class="group--footer">
-				<a href="{{ route('hr.esp') }}" class="group--footer__link">
-					Empezar	
-				</a>
 			</div>
 		</div>
 	@endforeach
+	</div>
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			{{ Form::open(['route' => 'grupo.put', 'method' => 'PUT']) }}
+			@foreach ($semestre as $d)
+				<div class="form-group">
+					<label>
+						{{ $d->semestre }}
+						<input type="checkbox" name="semestre[]" value="{{ $d->id }}">
+					</label>
+				</div>				
+			@endforeach
+				<div class="form-group">
+					<button>Empezar</button>
+				</div>
+			{{ Form::close() }}
+		</div>
+		<div class="col-md-3"></div>
 	</div>
 	<div class="row">
 		<div class="col-md-3"></div>

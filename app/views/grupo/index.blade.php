@@ -25,6 +25,7 @@
 						<th class="text-center">Semestre</th>
 						<th class="text-center">Opciones</th>
 						<th class="text-center">Carrera</th>
+						<th class="text-center">Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,8 +40,14 @@
 							</a>
 						</td>
 						<td>{{ $d->carrera }}</td>
+						<td class="text-center">
+							@if ($d->status == 1)
+							<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Grupo activo"></i>
+							@else
+							<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Grupo no activo"></i>
+							@endif
+						</td>
 					</tr>
-
 					@endforeach
 				</tbody>
 			</table>

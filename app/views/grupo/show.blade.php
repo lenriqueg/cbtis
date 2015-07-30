@@ -13,6 +13,17 @@
 		    		<p><strong>Turno: </strong>{{ $data->turno->turno }}</p>
 		    		<p><strong>Semestre: </strong>{{ $data->semestre->semestre }}</p>
 		    		<p><strong>Carrera:</strong> {{ $data->carrera->carrera }}</p>
+		    		@if ($data->status == 1)
+			    	<p>
+						<strong>Activado</strong>
+			    		<i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Grupo activo"></i>
+			    	</p>
+			    	@else
+		    		<p>
+		    			<strong>Desactivado</strong>
+		    			<i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Grupo no activo"></i>
+		    		</p>
+			    	@endif
 		    		<a href="{{ action('GMController@index', $data->id) }}">ver materias</a>
 
 				</div>
