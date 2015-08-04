@@ -1,5 +1,6 @@
 
 create table horarios(
+	id integer(10) unsigned not null auto_increment primary key,
 	hora_id integer(10) unsigned not null,
 	FOREIGN KEY (hora_id) REFERENCES horas(id),
 	materia_id integer(10) unsigned not null,
@@ -12,5 +13,4 @@ create table horarios(
 	FOREIGN KEY (dia_id) REFERENCES dias(id),
 	ciclo_id integer(10) unsigned not null,
 	FOREIGN KEY (ciclo_id) REFERENCES ciclos(id)
-	--primary key(hora_id, maestro_id, materia_id, grupo_id, aula_id, dia_id, ciclo_id)
 );

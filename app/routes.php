@@ -17,4 +17,14 @@ require 'views/turno/routes.php';
 
 Route::get('/', ['as' => 'root', 'uses' => 'HomeController@index']);
 
-Route::get('api/{id}', ['as' => 'API.esp', 'uses' => 'APIController@index']);
+Route::get('api/ciclos', 'APIController@ciclo');
+
+Route::get('api/horas', ['as' => 'API.hora', 'uses' => 'APIController@hora']);
+
+Route::get('api/dias', ['as' => 'API.dia', 'uses' => 'APIController@dia']);
+
+Route::get('api/grupos/{id}', ['as' => 'ap', 'uses' => 'APIController@grupo_materia']);
+
+Route::get('api/aulas', ['as' => 'ap', 'uses' => 'APIController@aula']);
+
+Route::post('api/save', 'APIController@save');

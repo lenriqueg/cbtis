@@ -11,7 +11,7 @@
 		<div class="group animated fadeIn">
 			<p class="group__name">Grupo: {{ $d->grupo }}</p>
 			<div class="group--footer">
-				<a href="{{ route('hr', [$d->c_id, $d->g_id] ) }}" class="group--footer__link">
+				<a href="{{ route('hr', $d->g_id ) }}" class="group--footer__link">
 					{{ $d->turno }}
 				</a>
 			</div>
@@ -27,7 +27,7 @@
 		<div class="group animated fadeIn">
 			<p class="group__name">Grupo: {{ $d->grupo }}</p>
 			<div class="group--footer">
-				<a href="{{ route('hr', [$d->c_id, $d->g_id] ) }}" class="group--footer__link">
+				<a href="{{ route('hr', $d->g_id ) }}" class="group--footer__link">
 					{{ $d->turno }}
 				</a>
 			</div>
