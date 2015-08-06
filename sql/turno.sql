@@ -7,4 +7,5 @@ create table turnos(
 INSERT INTO turnos (id, turno)
 VALUES
 	(1, 'matutino'),
-	(2, 'vespertino');
+	(2, 'vespertino'),
+	(3, 'enpalme');
