@@ -23,7 +23,10 @@ class CMMController extends \BaseController {
 			->join('materias', 'materias.id', '=', 'materia_id')
 			->join('grupos', 'grupos.id', '=', 'grupo_id')
 			->where('grupos.status', '=', 1)
-			->select('grupo', 'materia', 'materias.id as id')
+			->select('materia', 'materias.id as id')
+			->distinct('materia')
+			->orderBy('grupo')
+			->orderBy('materia')
 			->get();
 		$ciclo = Ciclo::where('status', '=', 1)->limit(1)->get();
 		return View::make('maestro_materia.create', compact('maestro', 'materia', 'ciclo'));
