@@ -64,74 +64,7 @@
 		</div>
 		<div class="col-md-9">
 			<button class="btn btn-primary btn-block" id="#btn-horario">horario</button>
-			<table class="table">
-				<tr>
-					<th>Hora</th>
-					<th>Lunes</th>
-					<th>Martes</th>
-					<th>Miercoles</th>
-					<th>Jueves</th>
-					<th>Viernes</th>
-				</tr>
-				<tbody>
-					<tr>
-						<td>7</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-					</tr>
-					<tr>
-						<td>11</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-					</tr>
-					<tr>
-						<td>12</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-						<td>null</td>
-					</tr>
-				</tbody>
-			</table>
+			
 		</div>
 	</div>
 </section>
@@ -140,6 +73,7 @@
 
 @section('scripts')
 
+{{ HTML::script('js/vendor/underscore.js') }}
 {{ HTML::script('js/vendor/angular.js') }}
 {{ HTML::script('js/app.js') }}
 {{ HTML::script('js/angular/controller/horario.js') }}

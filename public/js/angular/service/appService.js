@@ -3,10 +3,10 @@ angular.module('app.service', [])
 
 	.factory('horaService', ['$http', '$q', function($http, $q){
 
-		function hora(){
+		function hora(grupo_id){
 			var url = 'http://horario.com';
 			var deferred = $q.defer();
-			$http.get(url + '/api/horas')
+			$http.get(url + '/api/horas/' + grupo_id)
 			.success(function(data){
 				deferred.resolve(data); 
 			});
@@ -53,6 +53,16 @@ angular.module('app.service', [])
 			return deferred.promise;
 		}
 
+		function horario(grupo_id){
+			var url = 'http://horario.com';
+			var deferred = $q.defer();
+			$http.get(url + '/api/horario/' + grupo_id)
+			.success(function(data){
+				deferred.resolve(data); 
+			});
+			return deferred.promise;
+		}
+
 		function save(grupo_id, materia_id, dia_id, hora_id, aula_id){
 			var url = 'http://horario.com';
 			var deferred = $q.defer();
@@ -76,7 +86,8 @@ angular.module('app.service', [])
 			ciclo,ciclo,
 			hora: hora,
 			materia: materia,
-			aula, aula,
+			aula: aula,
+			horario: horario,
 			save: save
 		}
 	}]);

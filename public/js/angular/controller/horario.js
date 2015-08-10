@@ -1,6 +1,6 @@
 app.controller('horario', ['$scope', 'horaService', function($scope, horaService){
 	
-	horaService.hora().then(function (data){
+	horaService.hora($scope.grupo_id).then(function (data){
 		$scope.hora = data;
 	});
 
@@ -16,13 +16,25 @@ app.controller('horario', ['$scope', 'horaService', function($scope, horaService
 		$scope.aula = data;
 	})
 
+	horaService.horario($scope.grupo_id).then(function (data){
+		$scope.horario = data;
+
+		$scope.dataLunes =
+		{
+			lunes: 'lunes'
+		}
+	})
+
 	$scope.save = function (){
 		horaService.save($scope.grupo_id, $scope.materia_id, $scope.dia_id, $scope.hora_id, $scope.aula_id)
 			.then(function (data){
 			// $scope.data = data;
 			console.log(data);
 			// alert(data);
-			});
+			horaService.horario($scope.grupo_id).then(function (data){
+				$scope.horario = data;
+			})
+		});	
 	} 
 
 }]);

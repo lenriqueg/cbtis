@@ -19,7 +19,9 @@ Route::get('/', ['as' => 'root', 'uses' => 'HomeController@index']);
 
 Route::get('api/ciclos', 'APIController@ciclo');
 
-Route::get('api/horas', ['as' => 'API.hora', 'uses' => 'APIController@hora']);
+Route::get('api/horas/{id}', 'APIController@hora');
+
+Route::get('api/horario/{id}', 'APIController@horario');
 
 Route::get('api/dias', ['as' => 'API.dia', 'uses' => 'APIController@dia']);
 

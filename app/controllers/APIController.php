@@ -8,9 +8,10 @@ class APIController extends \BaseController {
 		return Response::json($data);
 	}
 
-	public function hora()
+	public function hora($id)
 	{
-		$data = Hora::all();
+		$grupo = Grupo::find($id);
+		$data = DB::select('SELECT * from horas where turno_id IN (?, 3)', [$grupo->turno_id]);
 		return Response::json($data);
 	}
 
@@ -89,7 +90,7 @@ class APIController extends \BaseController {
 				// ->where('grupo_id', '=', $grupo)
 				->where('ciclo_id', '=', $c)->get();
 
-			if (!$sql || !$sql2 || $sql3) {
+			if (!$sql) {
 				return true;
 			}
 
@@ -152,49 +153,50 @@ class APIController extends \BaseController {
 			return false;
 		}
 
-		function fusion($hora, $materia, $dia, $c, $grupo, $aula)
+		function safe($hora, $materia, $dia, $c, $grupo, $aula)
 		{
-			$type = Hora::find($hora);
+			function clon($hora, $materia, $dia, $c, $grupo, $aula)
+			{
 
-			if ($type->turno_id != 3) {
-				DB::table('horarios')
-					->insert([
-							'hora_id'		=> $hora,
-							'materia_id'	=> $materia,
-							'grupo_id'		=> $grupo,
-							'aula_id'		=> $aula,
-							'dia_id'		=> $dia,
-							'ciclo_id'		=> $c
-						]);
+				$count = DB::table('clon_horarios')
+					->where('grupo_id', '=', $grupo)->count();
+				if ($count < 1) {
+					$g = Grupo::find($grupo);
+					$x = DB::select('SELECT * from horas where turno_id IN (?, 3)', [$g->turno_id]);
 
+					for ($i=0; $i < count($x); $i++) { 
+						DB::table('clon_horarios')
+							->insert([
+								'hora_id'		=> 0,
+								'materia_id'	=> 0,
+								'grupo_id'		=> $grupo,
+								'aula_id'		=> 0,
+								'dia_id'		=> 0,
+								'ciclo_id'		=> $c
+							]);
+					}
+				}
+
+
+				DB::update('UPDATE clon_horarios 
+					SET hora_id = ?, materia_id = ?, grupo_id = ?, aula_id = ?, dia_id = ?
+					where ciclo_id = ? and hora_id = 0 limit 1', [$hora, $materia, $grupo, $aula, $dia, $c]);
+				
 				return true;
 			}
 
-			$maestro = DB::table('materias')
-				->join('maestro_materia', 'materias.id', '=', 'maestro_materia.materia_id')
-				->where('materia_id', '=', $materia)
-				->select('materia', 'materia_id', 'maestro_id')
-				->get();
+			$save = DB::table('horarios')
+				->insert([
+						'hora_id'		=> $hora,
+						'materia_id'	=> $materia,
+						'grupo_id'		=> $grupo,
+						'aula_id'		=> $aula,
+						'dia_id'		=> $dia,
+						'ciclo_id'		=> $c
+					]);
+				clon($hora, $materia, $dia, $c, $grupo, $aula);
 
-			foreach ($maestro as $d) {
-				$m = $d->maestro_id;
-			}
-
-			$sql = DB::table('maestro_materia')
-				->join('materias' ,'maestro_materia.materia_id', '=', 'materias.id')
-				->join('maestros' ,'maestro_materia.maestro_id', '=', 'maestros.id')
-				->join('horarios' ,'materias.id', '=', 'horarios.materia_id')
-				->where('hora_id', '=', $hora)
-				->where('horarios.ciclo_id', '=', $c)
-				->where('dia_id', '=', $dia)
-				->where('maestros.id', '=', $m)
-				->get();
-
-			if ($sql == null) {
-				return true;
-			}
-
-			return false;
+			return true;
 
 		}
 
@@ -202,7 +204,7 @@ class APIController extends \BaseController {
 			if (empalme($hora, $dia, $aula, $c, $grupo)) {
 				if (maxHrs($hora, $c, $materia)) {
 					if (maestro($dia, $hora, $materia, $c)) {
-						if (fusion($hora, $materia, $dia, $c, $grupo, $aula)) {
+						if (safe($hora, $materia, $dia, $c, $grupo, $aula)) {
 							return 'guardado';
 						}
 						return Response::json(['error' => 'hora de empalme']);
@@ -216,4 +218,43 @@ class APIController extends \BaseController {
 		return Response::json(['error' => 'validator fail']);
 	}
 
+	public function horario($id)
+	{
+		$horario = DB::select('select hora, hora_id, materia, materia_id, grupo, grupo_id, aula, aula_id, dia, dia_id, ciclo from horarios
+			join horas
+				on horas.id = horarios.hora_id
+			join materias
+				on materias.id = horarios.materia_id
+			join grupos
+				on grupos.id = horarios.grupo_id
+			join aulas
+				on aulas.id = horarios.aula_id
+			join dias
+				on dias.id = horarios.dia_id
+			join ciclos
+				on ciclos.id = horarios.ciclo_id
+			where ciclo_id = 2
+			and grupo_id = ?', [$id]);
+
+		return Response::json($horario);
+	}
+
 }
+
+// select hora, materia, grupo, aula, dia, ciclo from horarios
+// join horas
+// 	on horas.id = horarios.hora_id
+// join materias
+// 	on materias.id = horarios.materia_id
+// join grupos
+// 	on grupos.id = horarios.grupo_id
+// join aulas
+// 	on aulas.id = horarios.aula_id
+// join dias
+// 	on dias.id = horarios.dia_id
+// join ciclos
+// 	on ciclos.id = horarios.ciclo_id
+// where ciclo_id = 2
+// and grupo_id = 1
+
+
