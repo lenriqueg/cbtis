@@ -64,6 +64,17 @@
 		</div>
 		<div class="col-md-9">
 			<button class="btn btn-primary btn-block" id="#btn-horario">horario</button>
+			<table class="table table-hover">
+				<tr>
+					<th>Hora</th>
+					<th ng-repeat="d in dia">@{{ d.dia }}</th>
+				</tr>
+				<tbody>
+					<tr ng-repeat="l in lun">
+						<td >@{{ l.materia }}</td>
+					</tr>
+				</tbody>
+			</table>
 			
 		</div>
 	</div>

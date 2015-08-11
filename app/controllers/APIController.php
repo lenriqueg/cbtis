@@ -97,19 +97,18 @@ class APIController extends \BaseController {
 			return false;
 		}
 
-		function maxHrs($hora, $c, $materia)
+		function maxHrs($c, $materia)
 		{
-			$materia = Materia::find($materia);
-			$materiaHrsTotal = $materia->hrs_practicas;
+			$m = Materia::find($materia);
+			$materiaHrsTotal = $m->hrs_practicas + $m->hrs_teoricas;
 
 			$horas = DB::table('horarios')
 				->where('materia_id', '=', $materia)
 				->where('ciclo_id', '=', $c)->count();
 
-			if ($materiaHrsTotal <= $horas) {
+			if ($horas < $materiaHrsTotal) {
 				return true;
 			}
-
 			return false;
 		}
 
@@ -157,24 +156,29 @@ class APIController extends \BaseController {
 		{
 			function clon($hora, $materia, $dia, $c, $grupo, $aula)
 			{
-
+				
 				$count = DB::table('clon_horarios')
 					->where('grupo_id', '=', $grupo)->count();
 				if ($count < 1) {
 					$g = Grupo::find($grupo);
 					$x = DB::select('SELECT * from horas where turno_id IN (?, 3)', [$g->turno_id]);
 
-					for ($i=0; $i < count($x); $i++) { 
-						DB::table('clon_horarios')
-							->insert([
-								'hora_id'		=> 0,
-								'materia_id'	=> 0,
-								'grupo_id'		=> $grupo,
-								'aula_id'		=> 0,
-								'dia_id'		=> 0,
-								'ciclo_id'		=> $c
-							]);
+					$dias = Dia::all();
+
+					foreach ($dias as $d) {
+						foreach($x as $y) {
+							DB::table('clon_horarios')
+								->insert([
+									'hora_id'		=> $y->id,
+									'materia_id'	=> 0,
+									'grupo_id'		=> $grupo,
+									'aula_id'		=> 0,
+									'dia_id'		=> $d->id,
+									'ciclo_id'		=> $c
+								]);
+						}
 					}
+
 				}
 
 
@@ -200,9 +204,11 @@ class APIController extends \BaseController {
 
 		}
 
+		// return maxHrs($c, $materia);
+
 		if (validar($data)) {
 			if (empalme($hora, $dia, $aula, $c, $grupo)) {
-				if (maxHrs($hora, $c, $materia)) {
+				if (maxHrs($c, $materia)) {
 					if (maestro($dia, $hora, $materia, $c)) {
 						if (safe($hora, $materia, $dia, $c, $grupo, $aula)) {
 							return 'guardado';
@@ -220,41 +226,23 @@ class APIController extends \BaseController {
 
 	public function horario($id)
 	{
-		$horario = DB::select('select hora, hora_id, materia, materia_id, grupo, grupo_id, aula, aula_id, dia, dia_id, ciclo from horarios
-			join horas
-				on horas.id = horarios.hora_id
-			join materias
-				on materias.id = horarios.materia_id
-			join grupos
-				on grupos.id = horarios.grupo_id
-			join aulas
-				on aulas.id = horarios.aula_id
-			join dias
-				on dias.id = horarios.dia_id
-			join ciclos
-				on ciclos.id = horarios.ciclo_id
+		$horario = DB::select('SELECT hora, hora_id, materia, materia_id, grupo, grupo_id, aula, aula_id, dia, dia_id, ciclo from clon_horarios
+			LEFT OUTER JOIN horas
+				on horas.id = clon_horarios.hora_id
+			LEFT OUTER JOIN materias
+				on materias.id = clon_horarios.materia_id
+			LEFT OUTER JOIN grupos
+				on grupos.id = clon_horarios.grupo_id
+			LEFT OUTER JOIN aulas
+				on aulas.id = clon_horarios.aula_id
+			LEFT OUTER JOIN dias
+				on dias.id = clon_horarios.dia_id
+			LEFT OUTER JOIN ciclos
+				on ciclos.id = clon_horarios.ciclo_id
 			where ciclo_id = 2
 			and grupo_id = ?', [$id]);
 
-		return Response::json($horario);
+			return Response::json($horario);
 	}
 
 }
-
-// select hora, materia, grupo, aula, dia, ciclo from horarios
-// join horas
-// 	on horas.id = horarios.hora_id
-// join materias
-// 	on materias.id = horarios.materia_id
-// join grupos
-// 	on grupos.id = horarios.grupo_id
-// join aulas
-// 	on aulas.id = horarios.aula_id
-// join dias
-// 	on dias.id = horarios.dia_id
-// join ciclos
-// 	on ciclos.id = horarios.ciclo_id
-// where ciclo_id = 2
-// and grupo_id = 1
-
-
