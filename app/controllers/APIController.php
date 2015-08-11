@@ -183,8 +183,9 @@ class APIController extends \BaseController {
 
 
 				DB::update('UPDATE clon_horarios 
-					SET hora_id = ?, materia_id = ?, grupo_id = ?, aula_id = ?, dia_id = ?
-					where ciclo_id = ? and hora_id = 0 limit 1', [$hora, $materia, $grupo, $aula, $dia, $c]);
+					SET materia_id = ?, aula_id = ?
+					where ciclo_id = ? and hora_id = ? and grupo_id = ? and dia_id = ?
+					limit 1', [$materia, $aula, $c, $hora, $grupo, $dia]);
 				
 				return true;
 			}
