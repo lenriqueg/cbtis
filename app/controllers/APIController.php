@@ -214,15 +214,15 @@ class APIController extends \BaseController {
 						if (safe($hora, $materia, $dia, $c, $grupo, $aula)) {
 							return Response::json(['msg' => 'Guardado', 'color' => 'success']);
 						}
-						return Response::json(['msg' => 'hora de empalme', 'color' => 'danger']);
+						return Response::json(['msg' => 'Hora de empalme', 'color' => 'danger']);
 					}
-					return Response::json(['msg' => 'el maestro ya fue asignado en la misma hora en otro lugar', 'color' => 'danger']);
+					return Response::json(['msg' => 'El maestro ya fue asignado en la misma hora en otro lugar', 'color' => 'danger']);
 				}
-				return Response::json(['msg' => 'maestro no asignado o horas al limite', 'color' => 'danger']);
+				return Response::json(['msg' => 'Maestro no asignado o horas al limite', 'color' => 'danger']);
 			}
-			return Response::json(['msg' => 'empalme de salones y hora', 'color' => 'danger']);
+			return Response::json(['msg' => 'Empalme de salones y hora', 'color' => 'danger']);
 		}
-		return Response::json(['msg' => 'error de validacion', 'color' => 'danger']);
+		return Response::json(['msg' => 'Faltan campos por acompletar', 'color' => 'danger']);
 	}
 
 	public function horario($id)
