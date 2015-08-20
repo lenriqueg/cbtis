@@ -212,17 +212,17 @@ class APIController extends \BaseController {
 				if (maxHrs($c, $materia)) {
 					if (maestro($dia, $hora, $materia, $c)) {
 						if (safe($hora, $materia, $dia, $c, $grupo, $aula)) {
-							return 'guardado';
+							return Response::json(['msg' => 'Guardado', 'color' => 'success']);
 						}
-						return Response::json(['error' => 'hora de empalme']);
+						return Response::json(['msg' => 'hora de empalme', 'color' => 'danger']);
 					}
-					return Response::json(['error' => 'el maestro ya fue asignado en la misma hora en otro lugar']);
+					return Response::json(['msg' => 'el maestro ya fue asignado en la misma hora en otro lugar', 'color' => 'danger']);
 				}
-				return Response::json(['error' => 'maestro no asignado o horas al limite']);
+				return Response::json(['msg' => 'maestro no asignado o horas al limite', 'color' => 'danger']);
 			}
-			return Response::json(['error' => 'empalme de salones y hora']);
+			return Response::json(['msg' => 'empalme de salones y hora', 'color' => 'danger']);
 		}
-		return Response::json(['error' => 'validator fail']);
+		return Response::json(['msg' => 'error de validacion', 'color' => 'danger']);
 	}
 
 	public function horario($id)
@@ -241,7 +241,9 @@ class APIController extends \BaseController {
 			LEFT OUTER JOIN ciclos
 				on ciclos.id = clon_horarios.ciclo_id
 			where ciclo_id = 2
-			and grupo_id = ?', [$id]);
+			and grupo_id = ?
+			group By hora_id, dia_id',
+			[$id]);
 
 			return Response::json($horario);
 	}

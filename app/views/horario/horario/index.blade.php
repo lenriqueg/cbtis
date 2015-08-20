@@ -64,21 +64,53 @@
 		</div>
 		<div class="col-md-9">
 			<button class="btn btn-primary btn-block" id="#btn-horario">horario</button>
-			<table class="table table-hover">
-				<tr>
-					<th>Hora</th>
-					<th ng-repeat="d in dia">@{{ d.dia }}</th>
-				</tr>
-				<tbody>
-					<tr ng-repeat="l in lun">
-						<td >@{{ l.materia }}</td>
-					</tr>
-				</tbody>
-			</table>
-			
+			<article class="table-li">
+				<div>Hora</div>
+				<div ng-repeat="l in lunes">
+					@{{ l.hora }}
+				</div>
+			</article>
+			<article class="table-li">
+				<div>Lunes</div>
+				<div ng-repeat="l in lunes">
+					@{{ l.materia }}
+					<div ng-if="l.materia == null">null</div>
+				</div>
+			</article>
+
+			<article class="table-li">
+				<div>Martes</div>
+				<div ng-repeat="m in martes">
+					@{{ m.materia }}
+					<div ng-if="m.materia == null">null</div>
+				</div>
+			</article>
+			<article class="table-li">
+				<div>Miercoles</div>
+				<div ng-repeat="m in miercoles">
+					@{{ m.materia }}
+					<div ng-if="m.materia == null">null</div>
+				</div>
+			</article>
+			<article class="table-li">
+				<div>Jueves</div>
+				<div ng-repeat="j in jueves">
+					@{{ j.materia }}
+					<div ng-if="j.materia == null">null</div>
+				</div>
+			</article>
+			<article class="table-li">
+				<div>Viernes</div>
+				<div ng-repeat="v in viernes">
+					@{{ v.materia }}
+					<div ng-if="v.materia == null">null</div>
+				</div>
+			</article>
 		</div>
+		<p class="text-@{{ data.color }}">@{{ data.msg }}</p>
 	</div>
 </section>
+
 
 @stop
 
@@ -87,6 +119,7 @@
 {{ HTML::script('js/vendor/underscore.js') }}
 {{ HTML::script('js/vendor/angular.js') }}
 {{ HTML::script('js/app.js') }}
+{{ HTML::script('js/angular/filter/filter.js') }}
 {{ HTML::script('js/angular/controller/horario.js') }}
 {{ HTML::script('js/angular/service/appService.js') }}
 
