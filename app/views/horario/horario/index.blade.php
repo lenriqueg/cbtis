@@ -63,7 +63,9 @@
 			</form>
 		</div>
 		<div class="col-md-9">
-			<button class="btn btn-primary btn-block" id="#btn-horario">horario</button>
+			<a href="{{ route('pdf', $id) }}">
+				<button class="btn btn-primary btn-block" id="#btn-horario">horario</button>
+			</a>
 			<article class="table-li">
 				<div>Hora</div>
 				<div ng-repeat="l in lunes">

@@ -8,3 +8,5 @@ Route::get('horario/carreras/{id}', ['as' => 'hr.car.gr', 'uses' => 'HorarioCont
 
 Route::get('horario/grupos/{id}', ['as' => 'hr', 'uses' => 'HorarioController@horario']);
 
+Route::get('horario/grupos/{id}/pdf', ['as' => 'pdf', 'uses' => 'HorarioController@pdf']);
+
