@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '127.0.0.1',
-			'database'  => 'cbtis',
+			'host'      => 'localhost',
+			'database'  => 'horario',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'mysql',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

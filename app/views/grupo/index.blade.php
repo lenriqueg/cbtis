@@ -87,7 +87,7 @@
 
 @stop
 
-@section('scripts')
+@section('script')
 
 <script>
 	(function(){

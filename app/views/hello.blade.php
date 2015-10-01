@@ -3,9 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CBTIS #251</title>
+	{{ HTML::style('css/bootstrap.min.css') }}
 	{{ HTML::style('css/main.css') }}
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-inverse">
@@ -105,9 +104,10 @@
 		</footer>
 	</div>
 
-	@yield('scripts')
-	
+	<script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 	{{ HTML::script('js/main.js') }}
+	@yield('script')
 	
 </body>
 </html>

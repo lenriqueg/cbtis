@@ -23,6 +23,13 @@
 						{{ Form::text('hrs_teoricas', null, ['class' => 'form-control', 'placeholder' => 'horas teoricas']) }}
 					</div>
 					<div class="form-group">
+						{{ Form::label('color', 'Color') }}
+						{{ Form::hidden('color', null) }}
+						<p class="color">
+							<button type="button" onclick="changeColor()" class="btn">Agregar un color</button>
+						</p>
+					</div>
+					<div class="form-group">
 						<button class="btn btn-primary">Guardar</button>
 					</div>
 					{{ Form::close() }}
@@ -36,6 +43,7 @@
 					{{ $errors->first('materia', '<p class="text-danger">:message</p>')}}
 					{{ $errors->first('hrs_practicas', '<p class="text-danger">:message</p>')}}
 					{{ $errors->first('hrs_teoricas', '<p class="text-danger">:message</p>')}}
+					{{ $errors->first('color', '<p class="text-danger">:message</p>')}}
 				</div>
 			</div>
 		</div>
@@ -44,3 +52,16 @@
 </section>
 
 @stop
+
+@section('script')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.0/randomColor.js"></script>
+	<script>
+
+		function changeColor()
+		{
+			var color = randomColor({luminosity: 'light'})
+			$('.color').css('background', color)
+			$('input[name=color]').val(color)
+		}
+	</script>
+@endsection

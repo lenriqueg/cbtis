@@ -26,8 +26,9 @@ class MateriaController extends \BaseController {
 
 		$rules = [
 			'materia' => 'required | unique:materias,materia',
-			'hrs_practicas' => 'integer',
-			'hrs_teoricas' => 'integer'
+			'hrs_practicas' => 'required | integer',
+			'hrs_teoricas' 	=> 'required | integer',
+			'color'			=> 'required | unique:materias,color'
 		];
 
 		$validator = Validator::make($data, $rules);
@@ -39,6 +40,7 @@ class MateriaController extends \BaseController {
 			$materia->materia = Input::get('materia');
 			$materia->hrs_practicas = Input::get('hrs_practicas');
 			$materia->hrs_teoricas = Input::get('hrs_teoricas');
+			$materia->color = Input::get('color');
 			$materia->status = 1;
 			$materia->save();
 
