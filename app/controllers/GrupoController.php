@@ -8,7 +8,7 @@ class GrupoController extends \BaseController {
 			->join('turnos', 'turno_id', '=', 'turnos.id')
 			->join('semestres', 'semestre_id', '=', 'semestres.id')
 			->join('carreras', 'carrera_id', '=', 'carreras.id')
-			->select('grupo', 'turno', 'semestre', 'carrera', 'grupos.status', 'grupos.id as g_id', 'semestres.id as s_id')
+			->select('grupo', 'carreras.id as carrera_id', 'turno', 'semestre', 'carrera', 'grupos.status', 'grupos.id as g_id', 'semestres.id as s_id')
 			->where('carrera_id', '=', $id)
 			->orderBy('turno')
 			->orderBy('grupo')
