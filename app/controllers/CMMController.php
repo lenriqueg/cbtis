@@ -25,6 +25,7 @@ class CMMController extends \BaseController {
 			->where('grupos.status', '=', 1)
 			->select('materia', 'materias.id as id')
 			->distinct('materia')
+			->where('materias.status', '<>', 0)
 			->orderBy('grupo')
 			->orderBy('materia')
 			->get();

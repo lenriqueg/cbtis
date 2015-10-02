@@ -1,7 +1,14 @@
 @extends('hello')
 
 @section('section')
-
+<section class="container text-center">
+	<a href="{{ route('turnos') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Atras">
+		<i class="fa fa-arrow-circle-left"></i>
+	</a>
+	<a href="{{ route('turno.new') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo turno">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</section>
 <section class="container">
 	<div class="row">
 		<div class="col-md-3"></div>

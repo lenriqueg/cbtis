@@ -22,6 +22,13 @@
 							{{ Form::label('hrs_teoricas', 'Horas teoricas') }}
 							{{ Form::text('hrs_teoricas', $data->hrs_teoricas, ['class' => 'form-control']) }}
 						</div>
+						<div class="form-group">
+							{{ Form::label('color', 'Color') }}
+							{{ Form::text('color', $data->color) }}
+							<p class="color">
+								<button type="button" onclick="changeColor()" class="btn">Agregar un color</button>
+							</p>
+						</div>
 						<div class="form-gropup">
 							<button class="btn btn-primary">Actualizar</button>
 						</div>
@@ -44,3 +51,15 @@
 </section>
 
 @stop
+
+@section('script')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.0/randomColor.js"></script>
+	<script>
+		function changeColor()
+		{
+			var color = randomColor({luminosity: 'light'})
+			$('.color').css('background', color)
+			$('input[name=color]').val(color)
+		}
+	</script>
+@endsection

@@ -1,7 +1,14 @@
 @extends('hello')
 
 @section('section')
-
+<section class="container text-center">
+	<a href="{{ route('especialidades') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Atras">
+		<i class="fa fa-arrow-circle-left"></i>
+	</a>
+	<a href="{{ route('esp.new') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nueva especialidad">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</section>
 <section class="container">
 	<div class="row">
 		<div class="col-md-3"></div>
@@ -51,8 +58,8 @@
 							<button class="btn btn-warning">Desactivar</button>
 							@else
 							<button class="btn btn-success">Activar</button>
-							{{ Form::close() }}
 							@endif
+							{{ Form::close() }}
 						</td>
 						<td>
 							{{ Form::open(['route' => ['esp.destroy', $data->id], 'method' => 'DELETE']) }}

@@ -72,6 +72,7 @@ class MateriaController extends \BaseController {
 			'materia' 		=> 'required',
 			'hrs_practicas' => 'integer',
 			'hrs_teoricas' 	=> 'integer',
+			'color'			=> 'required'
 		];
 
 		$validator = Validator::make($data, $rules);
@@ -80,9 +81,12 @@ class MateriaController extends \BaseController {
 			
 			$materia = Materia::find($id);
 
-			$materia->materia = Input::get('materia');
+			$materia->materia 		= Input::get('materia');
 			$materia->hrs_practicas = Input::get('hrs_practicas');
-			$materia->hrs_teoricas = Input::get('hrs_teoricas');
+			$materia->hrs_teoricas 	= Input::get('hrs_teoricas');
+			$materia->color			= Input::get('color');
+
+			//dd(Input::all());
 			$materia->save();
 
 			return Redirect::route('mat.show', $materia->id);

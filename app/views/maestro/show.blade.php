@@ -1,7 +1,14 @@
 @extends('hello')
 
 @section('section')
-
+<section class="container text-center">
+    <a href="{{ route('maestros') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Atras">
+        <i class="fa fa-arrow-circle-left"></i>
+    </a>
+    <a href="{{ route('mtr.new') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo maestro">
+        <i class="fa fa-plus-circle"></i>
+    </a>
+</section>
 <section class="container">
     <div class="row">
         <div class="col-md-3"></div>
@@ -11,12 +18,12 @@
                 <div class="panel-body">
                     <p><strong>Maestro:</strong> {{ $data->nombres }}</p>
                     <p><strong>Clave: </strong>{{ $data->clave }}</p>
+                    @if ($data->status == 1)
                     <p>
                         <a href="{{ action('CMMController@index', $data->id) }}">
                             materias del maestro
                         </a>
                     </p>
-                    @if ($data->status == 1)
                     <p>
                         <strong>Activado</strong>
                     <i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Maestro activo"></i>

@@ -1,7 +1,14 @@
 @extends('hello')
 
 @section('section')
-
+<section class="container text-center">
+    <a href="{{ route('materias') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Atras">
+        <i class="fa fa-arrow-circle-left"></i>
+    </a>
+    <a href="{{ route('mat.new') }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nueva materia">
+        <i class="fa fa-plus-circle"></i>
+    </a>
+</section>
 <section class="container">
     <div class="row">
         <div class="col-md-3"></div>
@@ -12,6 +19,7 @@
                     <p><strong>Materia:</strong> {{ $data->materia }}</p>
                     <p><strong>Horas practicas: </strong>{{ $data->hrs_practicas }}</p>
                     <p><strong>Horas teoricas: </strong>{{ $data->hrs_teoricas }}</p>
+                    <p><strong style="background: {{ $data->color }}">Color </strong></p>
                     @if ($data->status == 1)
                     <p>
                         <strong>Activado</strong>

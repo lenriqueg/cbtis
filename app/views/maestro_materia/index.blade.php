@@ -3,9 +3,13 @@
 @section('section')
 
 <section class="container text-center">
+	<a href="{{ route('mtr.show', $id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Atras">
+		<i class="fa fa-arrow-circle-left"></i>
+	</a>
 	<a href="{{ route('cmm.new', $id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo">
 		<i class="fa fa-plus-circle"></i>
 	</a>
+
 </section>
 
 <section class="container">
