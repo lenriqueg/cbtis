@@ -17,20 +17,25 @@ class HoraController extends \BaseController {
 
 	public function create()
 	{
-		return View::make('hora.create');
+		$turno = Turno::all();
+		return View::make('hora.create', compact('turno'));
 	}
 
 	public function store()
 	{
 		$data = Input::except('_token');
 
-		$rules = ['hora'	=> 'required | unique:horas,hora'];
+		$rules = [
+			'hora'		=> 'required | unique:horas,hora',
+			'turno_id'	=> 'required'
+		];
 
 		$validacion = Validator::make($data, $rules);
 
 		if ($validacion->passes()) {
 			$hora = new Hora();
-			$hora->hora = Input::get('hora');
+			$hora->hora 	= Input::get('hora');
+			$hora->turno_id	= Input::get('turno_id');
 			$hora->save();
 
 			return Redirect::route('hora.show', $hora->id);
@@ -41,7 +46,10 @@ class HoraController extends \BaseController {
 
 	public function show($id)
 	{
-		$data = Hora::find($id);
+		$data = DB::select('select hora, horas.id as id, turno from horas
+			join turnos
+				on turnos.id = horas.turno_id
+			where horas.id = ?', [$id]);
 		return View::make('hora.show', compact('data'));
 	}
 

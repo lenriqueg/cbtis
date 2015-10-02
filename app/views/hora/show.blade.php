@@ -10,13 +10,15 @@
 	</a>
 </section>
 <section class="container">
+	@foreach($data as $d)
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">Descripción</div>
 				<div class="panel-body">
-			    	<p><strong>Hora:</strong> {{ $data->hora }}</p>
+			    	<p><strong>Hora:</strong> {{ $d->hora }}</p>
+					<p><strong>Turno:</strong> {{ $d->turno }}</p>
 				</div>
 			</div>
 		</div>
@@ -33,12 +35,13 @@
 			</div>
 	        @endif
 			{{-- <button class="btn btn-info">Actualizar</button> --}}
-			{{ Form::open(['route' => ['hora.destroy', $data->id], 'method' => 'DELETE']) }}
+			{{ Form::open(['route' => ['hora.destroy', $d->id], 'method' => 'DELETE']) }}
 			<button class="btn btn-danger">Eliminar</button>
 			{{ Form::close() }}
 		</div>
 		<div class="col-md-3"></div>
 	</div>
+	@endforeach
 </section>
 
 @stop

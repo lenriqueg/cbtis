@@ -15,6 +15,14 @@
 						{{ Form::text('hora', null, ['class' => 'form-control', 'placeholder' => 'hora']) }}
 					</div>
 					<div class="form-group">
+						{{ Form::label('turno_id', 'Turno') }}
+						<select name="turno_id" class="form-control">
+							@foreach($turno as $d)
+							<option value="{{ $d->id }}">{{ $d->turno }}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="form-group">
 						<button class="btn btn-primary">Guardar</button>
 					</div>
 					{{ Form::close() }}
