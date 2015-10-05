@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>CBTIS #251</title>
@@ -20,7 +20,7 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
+				@if( Auth::user() )
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Aulas<b class="caret"></b></a>
@@ -85,8 +85,9 @@
 							<li><a href="{{route('turno.new')}} ">Nuevo turno</a></li>
 						</ul>
 				    </li>
-					<li><a href="{{-- {{action('AuthController@logOut')}} --}}">Cerrar Sesión</a>
+					<li><a href="{{action('HomeController@logout')}}">Cerrar sesión</a>
 				</ul>
+				@endif
 			</div>
 		</div>
 	</nav>
