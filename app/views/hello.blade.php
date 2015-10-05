@@ -85,7 +85,9 @@
 							<li><a href="{{route('turno.new')}} ">Nuevo turno</a></li>
 						</ul>
 				    </li>
-					<li><a href="{{action('HomeController@logout')}}">Cerrar sesión</a>
+					<li>
+						<a href="{{action('HomeController@logout')}}">Cerrar sesión</a>
+					</li>
 				</ul>
 				@endif
 			</div>

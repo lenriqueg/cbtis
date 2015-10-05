@@ -3,6 +3,9 @@
 @section('section')
 
 <section class="container text-center">
+	<a href="{{ route('grupos', $data->carrera_id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Atras">
+		<i class="fa fa-arrow-circle-left"></i>
+	</a>
 	<a href="{{ route('gm.new', $data->id) }}" class="icon-link" data-toggle="tooltip" data-placement="bottom" title="Nuevo">
 		<i class="fa fa-plus-circle"></i>
 	</a>
