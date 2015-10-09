@@ -18,22 +18,11 @@
                 <div class="panel-body">
                     <p><strong>Maestro:</strong> {{ $data->nombres }}</p>
                     <p><strong>Clave: </strong>{{ $data->clave }}</p>
-                    @if ($data->status == 1)
                     <p>
                         <a href="{{ action('CMMController@index', $data->id) }}">
                             materias del maestro
                         </a>
                     </p>
-                    <p>
-                        <strong>Activado</strong>
-                    <i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Maestro activo"></i>
-                    </p>
-                    @else
-                    <p>
-                        <strong>Desactivado</strong>
-                        <i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Maestro no activo"></i>
-                    </p>
-                    @endif
                 </div>
             </div>
         </div>
@@ -56,15 +45,6 @@
                             <a href="{{ route('mtr.edit', $data->id) }}">
                                 <button class="btn btn-primary">Actualizar</button>
                             </a>
-                        </td>
-                        <td>
-                            {{ Form::open(['route' => ['mtr.status', $data->id], 'method' => 'PUT']) }}
-                            @if ($data->status == 1)
-                            <button class="btn btn-warning">Desactivar</button>
-                            @else
-                            <button class="btn btn-success">Activar</button>
-                            @endif
-                            {{ Form::close() }}
                         </td>
                         <td>
                             {{ Form::open(['route' => ['mtr.destroy', $data->id], 'method' => 'DELETE']) }}

@@ -19,7 +19,6 @@
                     <th class="text-center">Clave</th>
                     <th class="text-center">Maestro</th>
                     <th class="text-center">Opciones</th>
-                    <th class="text-center">Estado</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,14 +30,6 @@
                         <a href="{{ route('mtr.show', $d->id) }}">
                             <i class="fa fa-cog" data-toggle="tooltip" data-placement="bottom" title="Mas opciones"></i>
                         </a>
-                    </td>
-                    <td class="text-center">
-                        @if ($d->status == 1)
-                        <i class="fa fa-dot-circle-o text-success" data-toggle="tooltip" data-placement="bottom" title="Maestro activo"></i>
-                        @else
-                        <i class="fa fa-ban text-danger" data-toggle="tooltip" data-placement="bottom" title="Maestro no activo"></i>
-                        @endif
-
                     </td>
                 </tr>
                 @endforeach

@@ -10,6 +10,7 @@ class CMMController extends \BaseController {
 			->join('ciclos', 'maestro_materia.ciclo_id', '=', 'ciclos.id')
 			->select('maestro_materia.id', 'maestro_id as m_id', 'nombres', 'materia', 'ciclo')
 			->where('maestro_id', '=', $id)
+			->where('ciclos.status', 1)
 			->orderBy('ciclo_id')
 			->orderBy('materia')
 			->paginate(6);
