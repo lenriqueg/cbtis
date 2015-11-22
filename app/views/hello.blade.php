@@ -99,7 +99,7 @@
 	<div class="container">
 		<footer>
 			<p>
-				CBTIS #251 2014
+				CBTIS #251 {{date('Y')}}
 			</p>
 			<p class="text-muted">
 				Sistema Desarrollado por Ing. Informática

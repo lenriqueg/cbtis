@@ -1,7 +1,6 @@
 @extends('hello')
 
 @section('section')
-
 <section class="container">
 	<div class="row">
 		<div class="col-md-1"></div>
@@ -20,6 +19,7 @@
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary">Guardar</button>
+						<a href="{{route('aulas')}}" class="btn btn-danger">Cancelar</a>
 					</div>
 					{{ Form::close() }}
 				</div>
