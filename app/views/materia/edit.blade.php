@@ -31,6 +31,7 @@
 						</div>
 						<div class="form-gropup">
 							<button class="btn btn-primary">Actualizar</button>
+							<a href="{{route('materias')}}" class="btn btn-danger">Cancelar</a>
 						</div>
 					{{ Form::close() }}
 				</div>
