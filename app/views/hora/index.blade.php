@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<h3 class="text-center text-uppercase">dias de clases del cbtis #251</h3>
+			<h3 class="text-center text-uppercase">Horas de clases del cbtis #251</h3>
 			<table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
