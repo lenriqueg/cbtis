@@ -16,6 +16,7 @@
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary">Guardar</button>
+						<a href="{{route('semestres')}}" class="btn btn-danger">Cancelar</a>
 					</div>
 					{{ Form::close() }}
 				</div>
