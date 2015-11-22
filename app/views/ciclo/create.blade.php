@@ -29,7 +29,8 @@
 							</div>
 					</div>
 					<div class="form-group">
-						<button class="btn btn-info">Guardar</button>
+						<button class="btn btn-primary">Guardar</button>
+						<a href="{{route('ciclos')}}" class="btn btn-danger">Cancelar</a>
 					</div>
 					{{ Form::close() }}
 				</div>
